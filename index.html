@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A parent's practical guide to locking down and monitoring children's internet access. Ten proven security measures with setup instructions and research-backed reasons why monitoring matters.">
+<title>Keep Your Kids Safe Online &mdash; A Springfield Parent's Field Guide</title>
+<style>
+/* ============================================================
+   DESIGN TOKENS — Simpsons-inspired palette
+   ============================================================ */
+:root {
+  --yellow:      #FED90F;
+  --yellow-dark: #E8C400;
+  --blue:        #009DDC;
+  --blue-dark:   #0077A8;
+  --orange:      #FF7A00;
+  --red-warn:    #C0392B;
+  --red-bg:      #FDF0EF;
+  --green:       #2E7D32;
+  --green-bg:    #F1F8F1;
+  --near-black:  #1A1A1A;
+  --dark-blue:   #003A52;
+  --page-bg:     #FFF9E6;
+  --card-bg:     #FFFFFF;
+  --border:      3px solid #1A1A1A;
+  --shadow:      4px 4px 0 #1A1A1A;
+  --radius:      4px;
+  --font-head:   Impact, 'Arial Black', Arial, sans-serif;
+  --font-body:   Georgia, 'Times New Roman', Times, serif;
+  --font-ui:     'Arial', Helvetica, sans-serif;
+  --font-code:   'Courier New', Courier, monospace;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--page-bg);
+  color: var(--near-black);
+  font-family: var(--font-body);
+  line-height: 1.7;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--blue-dark); }
+a:hover { color: var(--orange); }
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h1, h2, h3 {
+  font-family: var(--font-head);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--near-black);
+  margin-bottom: 0.25em;
+}
+
+h3 {
+  font-size: 1.1rem;
+  color: var(--near-black);
+}
+
+p { margin-bottom: 1em; }
+p:last-child { margin-bottom: 0; }
+
+code, pre {
+  font-family: var(--font-code);
+  font-size: 0.875rem;
+}
+
+pre {
+  background: #1A1A1A;
+  color: #E8F5E9;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  line-height: 1.6;
+  margin: 0.75rem 0;
+}
+
+strong { font-weight: bold; }
+
+/* ============================================================
+   LAYOUT UTILITIES
+   ============================================================ */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section-intro {
+  font-size: 1.05rem;
+  max-width: 72ch;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+section {
+  padding: 3.5rem 0;
+}
+
+section:nth-child(even) {
+  background: #FFF5D6;
+}
+
+/* ============================================================
+   STICKY NAVIGATION
+   ============================================================ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--dark-blue);
+  border-bottom: 3px solid var(--yellow);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 1rem;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-logo {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  color: var(--yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  padding: 0.65rem 1rem 0.65rem 0;
+  margin-right: 0.5rem;
+  border-right: 2px solid rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+
+nav a {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: rgba(255,255,255,0.82);
+  padding: 0.65rem 0.85rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: color 0.15s, background 0.15s;
+  border-bottom: 3px solid transparent;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--yellow);
+  border-bottom-color: var(--yellow);
+}
+
+/* ============================================================
+   HERO / HEADER
+   ============================================================ */
+#hero {
+  background: var(--yellow);
+  border-bottom: var(--border);
+  padding: 0 0 2rem;
+  overflow: hidden;
+}
+
+.skyline-wrap {
+  display: block;
+  width: 100%;
+  background: var(--blue);
+  line-height: 0;
+  border-bottom: 4px solid var(--near-black);
+  margin-bottom: 1.75rem;
+}
+
+.skyline-wrap svg {
+  width: 100%;
+  display: block;
+}
+
+.hero-content {
+  padding: 0 1.25rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.hero-tag {
+  display: inline-block;
+  background: var(--orange);
+  color: white;
+  font-family: var(--font-head);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border: 2px solid var(--near-black);
+  box-shadow: 2px 2px 0 var(--near-black);
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--near-black);
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.12);
+  margin-bottom: 0.6rem;
+}
+
+.hero-sub {
+  font-family: var(--font-ui);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--dark-blue);
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   INTRO SECTION
+   ============================================================ */
+#intro { background: var(--page-bg); }
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 680px) {
+  .intro-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   SPRINGFIELD SIGN (warning box component)
+   ============================================================ */
+.springfield-sign {
+  border: 4px solid var(--near-black);
+  background: var(--yellow);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.springfield-sign::before {
+  content: "! ATTENTION SPRINGFIELD PARENTS !";
+  display: block;
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--red-warn);
+  margin-bottom: 0.6rem;
+}
+
+.springfield-sign p {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: var(--near-black);
+  margin-bottom: 0.5em;
+}
+
+.springfield-sign p:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   SECTION HEADINGS with Springfield-style underline
+   ============================================================ */
+.section-heading-wrap {
+  margin-bottom: 2rem;
+}
+
+.section-number {
+  display: inline-block;
+  background: var(--orange);
+  color: white;
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid var(--near-black);
+  box-shadow: 2px 2px 0 var(--near-black);
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   ACCORDION CARDS — Security Measures
+   ============================================================ */
+#measures { background: #FFF5D6; }
+
+.measures-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.25rem;
+}
+
+.btn-toggle-all {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--dark-blue);
+  color: white;
+  border: 2px solid var(--near-black);
+  box-shadow: 2px 2px 0 var(--near-black);
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-toggle-all:hover { background: var(--blue); }
+
+.card {
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--card-bg);
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+
+.card-header {
+  background: var(--yellow);
+  padding: 0.9rem 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.card-header:hover { background: var(--yellow-dark); }
+
+.card-header[aria-expanded="true"] { background: var(--yellow-dark); }
+
+.card-num {
+  background: var(--blue);
+  color: white;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  min-width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  border: 2px solid var(--near-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-title-wrap {
+  flex: 1;
+}
+
+.card-title {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--near-black);
+  line-height: 1.2;
+}
+
+.card-tagline {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: #444;
+  margin-top: 0.1rem;
+}
+
+.card-chevron {
+  font-size: 1.1rem;
+  color: var(--near-black);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  font-style: normal;
+}
+
+.card-header[aria-expanded="true"] .card-chevron {
+  transform: rotate(180deg);
+}
+
+.card-body {
+  display: none;
+  padding: 1.5rem;
+  border-top: var(--border);
+}
+
+.card-body.open { display: block; }
+
+/* Sub-sections inside accordion */
+.sub-section {
+  margin-bottom: 1.25rem;
+}
+
+.sub-section:last-child { margin-bottom: 0; }
+
+.sub-label {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 2px solid var(--near-black);
+}
+
+.sub-label.why   { background: var(--blue);   color: white; }
+.sub-label.how   { background: var(--green);  color: white; }
+.sub-label.eg    { background: var(--near-black); color: white; }
+.sub-label.circ  { background: var(--red-warn); color: white; }
+
+.sub-section p,
+.sub-section ol,
+.sub-section ul {
+  font-family: var(--font-ui);
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+
+.sub-section ol,
+.sub-section ul {
+  padding-left: 1.4rem;
+  margin-bottom: 0.5em;
+}
+
+.sub-section li { margin-bottom: 0.25em; }
+
+/* Circumvention warning block */
+.circumvent-box {
+  background: var(--red-bg);
+  border-left: 4px solid var(--red-warn);
+  padding: 0.9rem 1.1rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.circumvent-box .circ-item {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  margin-bottom: 0.65rem;
+  padding-left: 0;
+}
+
+.circumvent-box .circ-item:last-child { margin-bottom: 0; }
+
+.circ-threat {
+  font-weight: bold;
+  color: var(--red-warn);
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.circ-counter {
+  color: #333;
+}
+
+/* ============================================================
+   RESEARCH SECTION
+   ============================================================ */
+#research { background: var(--page-bg); }
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 680px) {
+  .articles-grid { grid-template-columns: 1fr; }
+}
+
+.article-card {
+  background: #FFFDE7;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.article-source {
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--blue);
+  color: white;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--near-black);
+}
+
+.article-year {
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  background: var(--orange);
+  color: white;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--near-black);
+}
+
+.article-title {
+  font-family: var(--font-head);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+}
+
+.article-stat {
+  background: var(--yellow);
+  border: 2px solid var(--near-black);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  color: var(--near-black);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.article-stat span {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: #555;
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  margin-bottom: 0.1rem;
+}
+
+.article-summary {
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.article-link {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: auto;
+}
+
+/* ============================================================
+   QUICKSTART CHECKLIST
+   ============================================================ */
+#quickstart { background: #FFF5D6; }
+
+.checklist {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  max-width: 860px;
+}
+
+@media (max-width: 680px) {
+  .checklist { grid-template-columns: 1fr; }
+}
+
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: var(--card-bg);
+  border: var(--border);
+  box-shadow: 3px 3px 0 var(--near-black);
+  padding: 0.9rem 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.check-num {
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  background: var(--yellow);
+  border: 2px solid var(--near-black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 0.8rem;
+  color: var(--near-black);
+}
+
+.check-text strong {
+  display: block;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--font-head);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--dark-blue);
+  color: rgba(255,255,255,0.75);
+  padding: 2.5rem 1.25rem;
+  border-top: 4px solid var(--yellow);
+}
+
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-title {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  color: var(--yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.footer-inner p {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 480px) {
+  .card-header { gap: 0.65rem; padding: 0.75rem 1rem; }
+  .card-body   { padding: 1.1rem; }
+  pre          { font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav aria-label="Page navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">Kid Safety</a>
+    <a href="#intro">Overview</a>
+    <a href="#measures">10 Lock-Downs</a>
+    <a href="#research">Research</a>
+    <a href="#quickstart">Start Here</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="skyline-wrap" aria-hidden="true">
+    <!-- Springfield skyline: CSS/SVG art, no trademarked characters -->
+    <svg viewBox="0 0 1200 180" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Sky gradient -->
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#006EA8"/>
+          <stop offset="100%" stop-color="#009DDC"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="180" fill="url(#sky)"/>
+
+      <!-- Sun (partially cut off at top right) -->
+      <circle cx="1130" cy="30" r="52" fill="#FF7A00" opacity="0.85"/>
+      <circle cx="1130" cy="30" r="38" fill="#FFB700"/>
+
+      <!-- Ground bar -->
+      <rect x="0" y="155" width="1200" height="25" fill="#1A6B2B"/>
+
+      <!-- Cooling tower LEFT (power plant) -->
+      <rect x="30" y="60" width="70" height="100" rx="3" fill="#E8E8E8" stroke="#1A1A1A" stroke-width="2"/>
+      <ellipse cx="65" cy="60" rx="35" ry="14" fill="#D0D0D0" stroke="#1A1A1A" stroke-width="2"/>
+      <ellipse cx="65" cy="160" rx="35" ry="12" fill="#C8C8C8" stroke="#1A1A1A" stroke-width="2"/>
+      <!-- Steam -->
+      <path d="M55,58 Q48,40 58,28 Q50,18 60,10" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M70,58 Q78,38 68,26 Q76,15 66,6" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Cooling tower RIGHT (power plant) -->
+      <rect x="120" y="70" width="65" height="90" rx="3" fill="#E8E8E8" stroke="#1A1A1A" stroke-width="2"/>
+      <ellipse cx="152" cy="70" rx="32" ry="12" fill="#D0D0D0" stroke="#1A1A1A" stroke-width="2"/>
+      <ellipse cx="152" cy="160" rx="32" ry="11" fill="#C8C8C8" stroke="#1A1A1A" stroke-width="2"/>
+      <!-- Steam -->
+      <path d="M142,68 Q136,52 144,42" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Power line post -->
+      <rect x="225" y="80" width="8" height="80" fill="#5D4037" stroke="#1A1A1A" stroke-width="1.5"/>
+      <rect x="206" y="88" width="46" height="7" rx="2" fill="#5D4037" stroke="#1A1A1A" stroke-width="1.5"/>
+      <line x1="206" y1="88" x2="190" y2="140" stroke="#1A1A1A" stroke-width="1.5"/>
+      <line x1="252" y1="88" x2="268" y2="140" stroke="#1A1A1A" stroke-width="1.5"/>
+      <line x1="210" y1="92" x2="180" y2="108" stroke="#888" stroke-width="1"/>
+      <line x1="250" y1="92" x2="280" y2="108" stroke="#888" stroke-width="1"/>
+
+      <!-- Kwik-E-Mart style store -->
+      <rect x="310" y="95" width="110" height="65" fill="#E8F5E9" stroke="#1A1A1A" stroke-width="2"/>
+      <rect x="310" y="95" width="110" height="20" fill="#4CAF50" stroke="#1A1A1A" stroke-width="2"/>
+      <rect x="325" y="115" width="35" height="45" fill="#90CAF9" stroke="#1A1A1A" stroke-width="1.5"/>
+      <rect x="370" y="125" width="40" height="35" fill="#B3E5FC" stroke="#1A1A1A" stroke-width="1.5"/>
+      <!-- Sign -->
+      <rect x="318" y="97" width="94" height="16" rx="1" fill="#FFEB3B" stroke="#1A1A1A" stroke-width="1"/>
+
+      <!-- Town Hall dome -->
+      <rect x="480" y="85" width="90" height="75" fill="#ECEFF1" stroke="#1A1A1A" stroke-width="2"/>
+      <path d="M480,85 Q525,45 570,85 Z" fill="#B0BEC5" stroke="#1A1A1A" stroke-width="2"/>
+      <rect x="510" y="45" width="12" height="40" fill="#78909C" stroke="#1A1A1A" stroke-width="1.5"/>
+      <rect x="503" y="40" width="26" height="8" fill="#607D8B" stroke="#1A1A1A" stroke-width="1.5"/>
+      <circle cx="516" cy="38" r="5" fill="#FFD700" stroke="#1A1A1A" stroke-width="1.5"/>
+      <!-- Town Hall windows -->
+      <rect x="495" y="100" width="18" height="24" fill="#B3E5FC" stroke="#1A1A1A" stroke-width="1.5"/>
+      <rect x="536" y="100" width="18" height="24" fill="#B3E5FC" stroke="#1A1A1A" stroke-width="1.5"/>
+      <!-- Door -->
+      <path d="M515,160 L515,135 Q525,128 535,135 L535,160 Z" fill="#795548" stroke="#1A1A1A" stroke-width="1.5"/>
+
+      <!-- Church steeple -->
+      <rect x="640" y="100" width="75" height="60" fill="#F5F5F5" stroke="#1A1A1A" stroke-width="2"/>
+      <rect x="665" y="70" width="25" height="32" fill="#ECEFF1" stroke="#1A1A1A" stroke-width="2"/>
+      <polygon points="677,45 655,72 700,72" fill="#CFD8DC" stroke="#1A1A1A" stroke-width="2"/>
+      <!-- Cross -->
+      <rect x="674" y="52" width="5" height="15" fill="#9E9E9E"/>
+      <rect x="669" y="57" width="15" height="5" fill="#9E9E9E"/>
+      <!-- Church windows -->
+      <rect x="657" y="110" width="15" height="20" rx="7" fill="#B3E5FC" stroke="#1A1A1A" stroke-width="1.5"/>
+      <rect x="682" y="110" width="15" height="20" rx="7" fill="#B3E5FC" stroke="#1A1A1A" stroke-width="1.5"/>
+
+      <!-- Donut shop (Springfield staple) -->
+      <rect x="780" y="100" width="90" height="60" rx="2" fill="#FCE4EC" stroke="#1A1A1A" stroke-width="2"/>
+      <rect x="780" y="100" width="90" height="20" rx="2" fill="#F48FB1" stroke="#1A1A1A" stroke-width="2"/>
+      <!-- Giant donut sign -->
+      <circle cx="825" cy="76" r="22" fill="#FFF9C4" stroke="#1A1A1A" stroke-width="2"/>
+      <circle cx="825" cy="76" r="10" fill="#E3F2FD" stroke="#1A1A1A" stroke-width="2"/>
+      <!-- Pink frosting -->
+      <path d="M815,68 Q825,58 835,68 Q843,76 835,84 Q825,92 815,84 Q807,76 815,68 Z" fill="#F48FB1" opacity="0.5"/>
+      <!-- Sprinkles -->
+      <rect x="818" y="66" width="4" height="2" fill="#F44336" transform="rotate(-30 820 67)"/>
+      <rect x="828" y="70" width="4" height="2" fill="#2196F3" transform="rotate(20 830 71)"/>
+      <rect x="820" y="78" width="4" height="2" fill="#4CAF50" transform="rotate(-10 822 79)"/>
+      <!-- Shop windows -->
+      <rect x="795" y="122" width="28" height="28" fill="#F8BBD0" stroke="#1A1A1A" stroke-width="1.5"/>
+      <rect x="837" y="122" width="28" height="28" fill="#F8BBD0" stroke="#1A1A1A" stroke-width="1.5"/>
+
+      <!-- Second power line post -->
+      <rect x="935" y="75" width="8" height="85" fill="#5D4037" stroke="#1A1A1A" stroke-width="1.5"/>
+      <rect x="916" y="84" width="46" height="7" rx="2" fill="#5D4037" stroke="#1A1A1A" stroke-width="1.5"/>
+      <line x1="916" y1="84" x2="900" y2="140" stroke="#1A1A1A" stroke-width="1.5"/>
+      <line x1="962" y1="84" x2="978" y2="140" stroke="#1A1A1A" stroke-width="1.5"/>
+
+      <!-- Apartment building -->
+      <rect x="1010" y="75" width="85" height="85" fill="#CFD8DC" stroke="#1A1A1A" stroke-width="2"/>
+      <!-- Windows grid 3x3 -->
+      <rect x="1021" y="85"  width="16" height="14" fill="#FFF9C4" stroke="#1A1A1A" stroke-width="1"/>
+      <rect x="1047" y="85"  width="16" height="14" fill="#FFF9C4" stroke="#1A1A1A" stroke-width="1"/>
+      <rect x="1073" y="85"  width="16" height="14" fill="#90CAF9" stroke="#1A1A1A" stroke-width="1"/>
+      <rect x="1021" y="108" width="16" height="14" fill="#90CAF9" stroke="#1A1A1A" stroke-width="1"/>
+      <rect x="1047" y="108" width="16" height="14" fill="#FFF9C4" stroke="#1A1A1A" stroke-width="1"/>
+      <rect x="1073" y="108" width="16" height="14" fill="#FFF9C4" stroke="#1A1A1A" stroke-width="1"/>
+      <rect x="1021" y="131" width="16" height="14" fill="#FFF9C4" stroke="#1A1A1A" stroke-width="1"/>
+      <rect x="1047" y="131" width="16" height="14" fill="#90CAF9" stroke="#1A1A1A" stroke-width="1"/>
+      <rect x="1073" y="131" width="16" height="14" fill="#FFF9C4" stroke="#1A1A1A" stroke-width="1"/>
+      <!-- Rooftop water tower -->
+      <rect x="1035" y="60" width="26" height="18" fill="#BCAAA4" stroke="#1A1A1A" stroke-width="1.5"/>
+      <rect x="1028" y="75" width="40" height="5" fill="#8D6E63" stroke="#1A1A1A" stroke-width="1.5"/>
+      <rect x="1040" y="77" width="6" height="8" fill="#8D6E63"/>
+      <rect x="1048" y="77" width="6" height="8" fill="#8D6E63"/>
+      <!-- Water tower lid -->
+      <polygon points="1035,60 1061,60 1048,50" fill="#A1887F" stroke="#1A1A1A" stroke-width="1.5"/>
+
+      <!-- Foreground road -->
+      <rect x="0" y="163" width="1200" height="17" fill="#424242"/>
+      <line x1="0" y1="171" x2="1200" y2="171" stroke="#FED90F" stroke-width="2.5" stroke-dasharray="30 20"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-tag">For Springfield Parents Everywhere</div>
+    <h1 class="hero-title">Keep Your Kids Safe Online</h1>
+    <p class="hero-sub">A Parent's Field Guide to Locking Down the Internet &mdash; Before Your Kid Does It First</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="container">
+    <div class="section-heading-wrap">
+      <div class="section-number">Overview</div>
+      <h2>Why This Guide Exists</h2>
+    </div>
+    <div class="intro-grid">
+      <div>
+        <p>The average teenager spends more than eight hours a day in front of a screen. A significant portion of that time is spent on platforms designed by engineers who are paid to maximize engagement, not protect your child. The internet as it exists in an unfiltered state is not a safe place for children.</p>
+        <p>This guide gives parents ten concrete, technically actionable security measures ranging from free router settings that take ten minutes to dedicated hardware appliances. Each entry explains the threat it addresses, exactly how to configure it, a real example you can copy, and&mdash;critically&mdash;how a determined child will try to circumvent it, so you can stay one step ahead.</p>
+        <p>None of these tools replace honest conversation. But they buy time, reduce casual exposure, and create a trail of accountability that keeps children safer while they develop the judgment to navigate the internet on their own.</p>
+      </div>
+      <div>
+        <div class="springfield-sign">
+          <p>The average child is first exposed to online pornography at age 11. Cyberbullying affects 1 in 3 young people. Social media algorithms are engineered to maximize time-on-platform&mdash;not wellbeing.</p>
+          <p>Parental monitoring is not surveillance. It is supervision. The same way you would not leave a ten-year-old alone on a city street at midnight, you should not leave them alone on an unfiltered internet.</p>
+          <p>Every tool in this guide has been used by real parents. Every circumvention method has been used by real kids. The goal is to know both.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 SECURITY MEASURES -->
+<section id="measures">
+  <div class="container">
+    <div class="section-heading-wrap">
+      <div class="section-number">Section 1</div>
+      <h2>Ten Things to Lock Down and Monitor</h2>
+      <p class="section-intro">Each measure includes the threat it addresses, how to configure it, a concrete example you can replicate, and how children typically bypass it so you can prepare a counter-measure.</p>
+    </div>
+
+    <div class="measures-toolbar">
+      <button class="btn-toggle-all" id="toggle-all" aria-label="Open or close all accordion cards">Open All</button>
+    </div>
+
+    <!-- CARD 1 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-1" id="header-1" role="button" tabindex="0">
+        <div class="card-num">1</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Firewalla &mdash; Hardware Firewall Appliance</div>
+          <div class="card-tagline">Sits between your modem and router; inspects every device on the network</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-1" role="region" aria-labelledby="header-1">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>Software parental controls can be uninstalled by a persistent teenager. A hardware device sitting between the modem and the internet cannot be bypassed by deleting an app. Firewalla inspects all network traffic at the gateway level, blocks by category (adult, gambling, violence), enforces schedules per device, and sends real-time alerts to your phone when a blocked category is attempted.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <ol>
+            <li>Purchase Firewalla Gold, Purple, or Blue (Purple handles up to 500 Mbps home connections).</li>
+            <li>Connect Firewalla between your modem and existing router in "Simple Mode" &mdash; the setup wizard in the app walks you through it in about five minutes.</li>
+            <li>Download the Firewalla app on your phone and complete the pairing process.</li>
+            <li>In the app, create a Family profile. Assign each child's device by MAC address to the Family group.</li>
+            <li>Enable "Family Protect" (built-in blocklist), "Adblock," and "YouTube Safe Search" from the profile settings.</li>
+            <li>Set time schedules per child: tap their profile, choose "Time Limits," and block all traffic between 9 PM and 7 AM on school nights.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># Firewalla App → Devices → [Child's iPhone]
+# Assign to: Family Group
+#
+# Rules on Family Group:
+#   YouTube Safe Search:   ON
+#   Block categories:      Adult, Violence, Gambling, VPN Services
+#   Bedtime (Sun-Thu):     9:00 PM – 7:00 AM (all traffic paused)
+#   Bedtime (Fri-Sat):     11:00 PM – 8:00 AM
+#   Data alert:            Notify if device uses > 2 GB/day
+#
+# To block a specific domain manually:
+# Firewalla App → Rules → New Rule → Block → Target Domain
+# Domain: tiktok.com → Apply to: Family Group</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">Using mobile data (4G/5G) instead of home WiFi</span>
+              <span class="circ-counter">Counter: Enable your carrier's family plan controls (Verizon Smart Family, T-Mobile FamilyMode) which apply the same restrictions on the cellular network. In the Firewalla app, also enable the "Block Mobile Data Bypass" rule so the device cannot use LTE as a fallback when WiFi is restricted.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Running a VPN app on the device to tunnel through Firewalla</span>
+              <span class="circ-counter">Counter: In Firewalla Rules, block "VPN Services" category for the Family group. This blocks known VPN protocols (OpenVPN on port 1194, WireGuard on port 51820, and Shadowsocks).</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Creating a mobile hotspot from one device to connect another</span>
+              <span class="circ-counter">Counter: Contact your carrier and disable the hotspot feature on your child's line. Most family plans allow this through the account management portal without changing any device settings.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-2" id="header-2" role="button" tabindex="0">
+        <div class="card-num">2</div>
+        <div class="card-title-wrap">
+          <div class="card-title">/etc/hosts File Blocking</div>
+          <div class="card-tagline">Free, offline, OS-level DNS override &mdash; requires no software</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-2" role="region" aria-labelledby="header-2">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>Every operating system consults the hosts file before making any DNS request. Entries in this file override DNS entirely: <code>0.0.0.0 tiktok.com</code> means that domain resolves to nothing, and no browser or app on that machine can reach it, regardless of which DNS server is configured or whether a VPN is running. It is free, requires no subscription, and works completely offline.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <ol>
+            <li>Open a terminal (Mac/Linux) or Notepad as Administrator (Windows) on the child's computer.</li>
+            <li>Mac/Linux: run <code>sudo nano /etc/hosts</code></li>
+            <li>Windows: navigate to <code>C:\Windows\System32\drivers\etc\hosts</code></li>
+            <li>Add one line per domain: <code>0.0.0.0 domain.com</code> and a second line for <code>0.0.0.0 www.domain.com</code></li>
+            <li>Save the file and flush the DNS cache (see example below).</li>
+            <li>Make the file read-only under a separate admin account so the child cannot edit it without your password.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># /etc/hosts additions
+# Format: 0.0.0.0 [domain]
+
+# Social media
+0.0.0.0  tiktok.com
+0.0.0.0  www.tiktok.com
+0.0.0.0  m.tiktok.com
+0.0.0.0  instagram.com
+0.0.0.0  www.instagram.com
+
+# Use the StevenBlack hosts project for 500,000+ domains:
+# github.com/StevenBlack/hosts  (regularly updated, free)
+
+# Flush DNS cache after editing:
+# macOS:   sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
+# Windows: ipconfig /flushdns
+# Linux:   sudo systemd-resolve --flush-caches
+
+# Make read-only on macOS (requires separate admin account):
+# sudo chflags uchg /etc/hosts</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">Editing the hosts file if they have admin access</span>
+              <span class="circ-counter">Counter: Create a standard (non-admin) user account for your child's daily use and keep the administrator password to yourself. On macOS, use <code>sudo chflags uchg /etc/hosts</code> under the admin account to lock the file from any modification.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Using a VPN which bypasses local DNS entirely</span>
+              <span class="circ-counter">Counter: The hosts file alone is insufficient against VPNs. Combine it with network-level DNS filtering (Card 3) and app-install restrictions (Card 6 &mdash; Screen Time) to prevent VPN apps from being installed.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Accessing a site by its IP address instead of its domain name</span>
+              <span class="circ-counter">Counter: Hosts-file entries are domain-based and do not block IP-direct access. For IP-level blocking, use a network firewall rule on your router or Firewalla to block specific IP ranges.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-3" id="header-3" role="button" tabindex="0">
+        <div class="card-num">3</div>
+        <div class="card-title-wrap">
+          <div class="card-title">DNS-Level Filtering &mdash; OpenDNS / CleanBrowsing / NextDNS</div>
+          <div class="card-tagline">Filters all DNS queries before any content loads &mdash; one router change covers every device</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-3" role="region" aria-labelledby="header-3">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>Every internet connection begins with a DNS lookup. If that lookup goes through a filtering resolver instead of your ISP's default server, the resolver can silently refuse to answer for adult or harmful domains. Changing your router's DNS settings applies this filter simultaneously to every device on your home network &mdash; computers, tablets, gaming consoles, smart TVs &mdash; with no software installation required on any device.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <ol>
+            <li>Log into your router admin panel (typically <code>192.168.1.1</code> or <code>192.168.0.1</code> in a browser).</li>
+            <li>Find the DNS settings under "Internet Setup," "WAN," or "Network Settings" depending on your router brand.</li>
+            <li>Replace the Primary and Secondary DNS addresses with one of the options below.</li>
+            <li>Save and reboot the router.</li>
+            <li>Verify: open a browser on any device and navigate to a known adult domain &mdash; it should show a block page.</li>
+            <li>Change your router admin password if it is still the default. Write it down and store it somewhere your children cannot find it.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># Option 1: CleanBrowsing Family Filter (free, no account)
+Primary DNS:   185.228.168.168
+Secondary DNS: 185.228.169.168
+# Blocks: adult, mixed-content, proxy/VPN bypass domains
+
+# Option 2: OpenDNS FamilyShield (free, no account)
+Primary DNS:   208.67.222.123
+Secondary DNS: 208.67.220.123
+# Blocks: adult content categories
+
+# Option 3: NextDNS (free tier, most powerful)
+Primary DNS:   [your-profile-specific IP from nextdns.io]
+# NextDNS Dashboard → Security → Block Bypass Methods: ON
+# NextDNS Dashboard → Parental Controls → SafeSearch: ON
+# NextDNS Dashboard → Parental Controls → YouTube Restricted: Strict
+
+# Verify filtering is active from any device:
+# nslookup pornhub.com 185.228.168.168
+# Expected: returns 0.0.0.0 (blocked)</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">Manually changing DNS settings on their device to 8.8.8.8 (Google) or 1.1.1.1 (Cloudflare)</span>
+              <span class="circ-counter">Counter: On routers that support it, add a firewall rule to intercept all outbound DNS traffic (TCP/UDP port 53) and redirect it to your chosen filtering DNS, regardless of what the device requests. Firewalla and pfSense both support this "DNS hijacking" rule.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Using DNS-over-HTTPS (DoH) which is built into Firefox and some Chromium browsers and bypasses traditional DNS entirely</span>
+              <span class="circ-counter">Counter: NextDNS offers its own DoH endpoint which you can push to devices as a managed profile. For Firefox, set <code>network.trr.mode = 5</code> via the browser managed policy to disable DoH. Block Cloudflare's DoH IP (104.16.248.249) at the router firewall level.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Switching to mobile data, which uses the carrier's DNS</span>
+              <span class="circ-counter">Counter: NextDNS and CleanBrowsing both offer iOS/Android apps that install as a system-level DNS-over-HTTPS profile, applying filtering even on cellular networks.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-4" id="header-4" role="button" tabindex="0">
+        <div class="card-num">4</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Net Nanny &mdash; Parental Control Software</div>
+          <div class="card-tagline">Application-layer filtering with HTTPS inspection, activity reports, and instant alerts</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-4" role="region" aria-labelledby="header-4">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>DNS-level filters are blind to the content within a web page &mdash; they block domains but cannot read what is on a page at a subdomain you did not think to block. Net Nanny operates at the application layer using local SSL inspection: it reads HTTPS page content in real time, categorizes it, masks profanity, and sends instant alerts to parents when their child searches for or views content in sensitive categories. It works on both home WiFi and mobile data.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <ol>
+            <li>Purchase a Net Nanny Family Protection Pass (covers up to 5 or 20 devices, depending on plan).</li>
+            <li>Create a parent account at netnanny.com. Add each child as a named sub-profile with their age.</li>
+            <li>Install the Net Nanny agent on each device. It will prompt you to install a local SSL inspection certificate and grant accessibility permissions.</li>
+            <li>On iOS, complete the prompted MDM profile installation. On Android, grant the required Accessibility Service permission.</li>
+            <li>In the parent dashboard, configure per-child rules: select content categories to block and set daily time limits per app category.</li>
+            <li>Enable "Immediate Alerts" for self-harm, pornography, and violent threat categories.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># Net Nanny Parent Dashboard → [Child Profile] → Web Filter
+#
+# Content categories (drag to BLOCK):
+#   Pornography:          BLOCK
+#   Violence:             BLOCK
+#   Drug-Related:         BLOCK
+#   Weapons:              BLOCK
+#   VPN & Anonymizers:    BLOCK   ← critical
+#   Social Networking:    TIME LIMIT (30 min/day after 4 PM)
+#   Gaming:               TIME LIMIT (1 hour/day)
+#
+# Alerts → Immediate notification:
+#   Self-Harm / Suicidal content:   ON
+#   Sexual / Pornographic content:  ON
+#   Violent threats:                ON
+#
+# Reports: Weekly digest email of top 10 visited sites</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">Attempting to uninstall the Net Nanny app</span>
+              <span class="circ-counter">Counter: On Android, activate Net Nanny as a Device Administrator (prompted during setup). A Device Administrator cannot be removed without first revoking admin rights, which requires your parent dashboard password. On iOS, the MDM profile locks uninstallation.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Installing a third-party browser not covered by the Net Nanny proxy</span>
+              <span class="circ-counter">Counter: In the Net Nanny app control section, you can block the installation of unrecognized apps. Combine with Screen Time (iOS) or Family Link (Android) to require parental approval for any new app install.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Using a second, unmonitored device such as an old phone or gaming console</span>
+              <span class="circ-counter">Counter: Configure your router (Card 4: router controls) so unknown devices are placed into a restricted guest network with blocked adult categories at the DNS level &mdash; so even unmonitored devices are filtered by default.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-5" id="header-5" role="button" tabindex="0">
+        <div class="card-num">5</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Router-Level Parental Controls</div>
+          <div class="card-tagline">Single enforcement point for every device on the home network</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-5" role="region" aria-labelledby="header-5">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>The router is the single choke point for all home internet traffic. Modern consumer routers from ASUS, Netgear, TP-Link, and Eero include built-in parental control suites that require no software installation on child devices. They work at the network level, are invisible to the child, and catch every device including gaming consoles, smart TVs, and IoT devices that cannot run parental control apps.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <ol>
+            <li>Log in to your router admin panel (check the label on your router for the default IP, usually <code>192.168.1.1</code>).</li>
+            <li>Find parental controls, labeled "Access Control," "Family Safety," or "Parental Controls" depending on your router brand.</li>
+            <li>Identify each child's device by MAC address (iPhone: Settings → General → About → WiFi Address).</li>
+            <li>Assign the device to a schedule: block internet access during school hours and after bedtime.</li>
+            <li>For content filtering, enable the router's built-in content filter if available (ASUS: AiProtection; Eero: eero Plus subscription; TP-Link Deco: HomeShield).</li>
+            <li>Change the router admin password from the default. Store it somewhere your children cannot access.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># ASUS Router: AiProtection + Parental Controls
+# Admin Panel → AiProtection → ON
+
+# Parental Controls → Time Scheduling:
+#   Device: [Child's MacBook] (MAC: AA:BB:CC:DD:EE:FF)
+#   Block times (Mon–Fri):  10:00 PM – 7:00 AM
+#   Block times (Sat–Sun):  12:00 AM – 9:00 AM
+
+# Website Filter → Activate for MAC AA:BB:CC:DD:EE:FF
+#   Block categories: Adult, Gambling, Violence, Drugs, P2P
+
+# Default policy for unknown devices:
+#   Settings → Guest Network → Block guest from accessing intranet
+#   (All unrecognized MACs go to a restricted guest VLAN)</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">MAC address spoofing &mdash; changing the device's MAC to appear as an unrestricted device</span>
+              <span class="circ-counter">Counter: Set your router's policy for unknown/unrecognized MAC addresses to "block by default." This means any spoofed MAC that does not match an explicitly allowed device will land in a blocked state or the restricted guest network.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Connecting to a neighbor's WiFi or creating a mobile hotspot</span>
+              <span class="circ-counter">Counter: Combine router controls with device-level controls (Card 6: Screen Time / Family Link) which travel with the device to any network, and with carrier-level family controls for mobile data.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Resetting the router to factory defaults to erase the parental control settings</span>
+              <span class="circ-counter">Counter: Some routers allow disabling the physical reset button in firmware settings. At minimum, change the admin password from the default so a router reset does not restore it to a known credential.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-6" id="header-6" role="button" tabindex="0">
+        <div class="card-num">6</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Apple Screen Time / Google Family Link</div>
+          <div class="card-tagline">Native OS controls that travel with the device to any network</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-6" role="region" aria-labelledby="header-6">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>Network-level controls vanish the moment a child leaves home. Device-level controls built into the operating system persist across WiFi, mobile data, school networks, and friends' houses. Both Apple Screen Time and Google Family Link integrate deeply with the OS: they control app installs, enforce content ratings, limit daily usage, and can lock the device remotely. They are enforced cryptographically and cannot be removed without a parent passcode.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <p><strong>Apple Screen Time (iPhone / iPad):</strong></p>
+          <ol>
+            <li>Settings → Screen Time → "This is My Child's [Device]"</li>
+            <li>Set a Screen Time passcode &mdash; use six digits entirely different from the device unlock PIN.</li>
+            <li>Content &amp; Privacy Restrictions → Enable → Web Content → "Limit Adult Websites."</li>
+            <li>Communication Limits: restrict who the child can contact during school hours and downtime.</li>
+            <li>Downtime: set a schedule (e.g., 9 PM to 7 AM) during which only "Always Allowed" apps work.</li>
+          </ol>
+          <p><strong>Google Family Link (Android):</strong></p>
+          <ol>
+            <li>Create or link a Google account for your child at families.google.com. This must be a supervised account.</li>
+            <li>On your phone, install the Family Link parent app. On the child's phone, install the Family Link child app.</li>
+            <li>Set daily screen time limits, bedtime locks, and require your approval for all Play Store downloads.</li>
+            <li>Enable SafeSearch: Family Link → child profile → Settings → Google Search → SafeSearch: Filter.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># Apple Screen Time via Family Sharing (remote management)
+# Settings → [Your Name] → Family Sharing → Screen Time
+#
+# Content & Privacy Restrictions:
+#   Web Content:          Limit Adult Websites
+#   Never Allow (custom): reddit.com, discord.com, 4chan.org
+#   App Store Purchases:  Require Password (always)
+#   Allowed Apps:         Camera, Messages, Safari (only)
+#
+# App Limits:
+#   Social Networking:    30 minutes per day
+#   Entertainment:        1 hour per day
+#
+# Downtime:
+#   Schedule:             9:00 PM – 7:00 AM (Mon–Sun)
+#   Always Allowed:       Phone, Messages (call/text parents only)
+#
+# Screen Time Passcode:   [6-digit code, unrelated to device PIN]</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">Guessing or watching you enter the Screen Time passcode</span>
+              <span class="circ-counter">Counter: Use a genuinely random 6-digit code with no connection to birthdays, addresses, or the device PIN. Do not enter it while your child can see the screen. Change it every few months.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Factory resetting the iPhone to erase Screen Time restrictions</span>
+              <span class="circ-counter">Counter: Enable Apple's Activation Lock by ensuring the device is linked to your Apple ID (the parent's) in Family Sharing. A factory-reset device locked to your Apple ID cannot be activated without your iCloud credentials.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Creating a second Apple ID or Google account not under Family supervision</span>
+              <span class="circ-counter">Counter: On iOS, Screen Time can block the ability to create new Apple IDs: Content &amp; Privacy Restrictions → Account Changes → "Don't Allow." This prevents account switching without your passcode.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 7 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-7" id="header-7" role="button" tabindex="0">
+        <div class="card-num">7</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Family VPN for Mobile Traffic &mdash; Circle / Bark / Aura</div>
+          <div class="card-tagline">Routes all device traffic through a filtering proxy, even on mobile data and away from home</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-7" role="region" aria-labelledby="header-7">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>Home network controls (router, Firewalla, DNS filtering) apply zero protection the moment a child leaves the house. A family-managed VPN installs a network profile on the device that routes all DNS queries &mdash; and optionally all traffic &mdash; through a parental filtering proxy regardless of whether the device is on home WiFi, a school network, a friend's WiFi, or LTE. This is the only category of control that extends coverage everywhere the device goes.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <ol>
+            <li>Choose a service: <strong>NextDNS</strong> (DNS-only, free tier available, most configurable), <strong>Circle Go</strong> (full traffic proxy, requires Circle Home Plus hardware + subscription), or <strong>Bark</strong> (monitoring focus with device-level VPN for iOS/Android).</li>
+            <li><strong>NextDNS approach:</strong> Create an account at nextdns.io. Configure blocklists and parental controls in the dashboard. On the child's iPhone: install the NextDNS app, tap "Link to Account," enable the VPN profile when prompted. The profile persists across reboots and network changes.</li>
+            <li><strong>Circle Go approach:</strong> Set up Circle Home Plus on your router (plug it in, pair via app). Subscribe to Circle Go ($4.99/month additional). In the Circle app, tap your child's profile → Enable "Circle Go" → Follow the prompts to install the profile on their device. This applies the same rules you set at home to the device on any network.</li>
+            <li>After installation, verify: turn off home WiFi on the device, use LTE, and attempt to access a blocked domain. It should be blocked.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># NextDNS Profile on iOS (installs as DNS-over-HTTPS profile)
+# nextdns.io → Setup → iOS → Download Profile
+# Install in: Settings → General → VPN & Device Management
+#
+# Lock the profile (prevent deletion):
+# Use Apple Configurator 2 (free, Mac App Store) to:
+#   1. Supervise the device (one-time setup, requires USB)
+#   2. Push the NextDNS profile as "non-removable"
+#   3. Set a supervision passcode separate from Screen Time
+#
+# NextDNS Dashboard settings:
+#   Blocklists: OISD Full, HaGeZi Multi-Pro
+#   Parental Controls:
+#     SafeSearch:          Enforce (all search engines)
+#     YouTube Restricted:  Strict
+#     Block: TikTok, Instagram, Snapchat, Discord
+#     Block Bypass Methods: ON  ← blocks VPN-over-VPN attempts</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">Deleting the VPN/DNS profile in Settings → General → VPN &amp; Device Management</span>
+              <span class="circ-counter">Counter: If the device is supervised via Apple Configurator 2, the profile is flagged as non-removable and the delete option does not appear. Supervision is a one-time USB process but makes all profiles and restrictions permanent until you explicitly remove them.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Installing a competing VPN app to override the DNS profile</span>
+              <span class="circ-counter">Counter: Use Screen Time to block the App Store category "Utilities" or specifically block VPN apps by name. Also block the VPN Services category in NextDNS so known VPN domains cannot be resolved.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Using a friend's device that has no profile installed</span>
+              <span class="circ-counter">Counter: This requires an honest conversation. No technology fully addresses a child determined to use another person's device. Build trust and set clear expectations about device use at friends' homes.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 8 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-8" id="header-8" role="button" tabindex="0">
+        <div class="card-num">8</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Safe Search Enforcement &mdash; Google, Bing, YouTube</div>
+          <div class="card-tagline">Force SafeSearch and YouTube Restricted Mode at the DNS level for every device at once</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-8" role="region" aria-labelledby="header-8">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>Search engines are often the first vector through which children encounter graphic content &mdash; a homework search for "anatomy" or "war history" can surface deeply inappropriate images without SafeSearch. YouTube's recommendation algorithm can lead from innocuous content toward increasingly extreme material within minutes. Configuring SafeSearch enforcement at the DNS level makes it mandatory on every device simultaneously, without needing to change any device's settings individually.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <ol>
+            <li>The most effective method is to add DNS CNAME overrides in your Pi-hole, NextDNS, or router so that Google, Bing, and YouTube resolve to their SafeSearch-enforced endpoints rather than their regular IPs.</li>
+            <li><strong>Google SafeSearch via DNS:</strong> Create a CNAME record mapping <code>google.com</code> and <code>www.google.com</code> to <code>forcesafesearch.google.com</code>.</li>
+            <li><strong>Bing SafeSearch via DNS:</strong> Create a CNAME record mapping <code>bing.com</code> and <code>www.bing.com</code> to <code>strict.bing.com</code>.</li>
+            <li><strong>YouTube Restricted Mode via DNS:</strong> Create CNAME records mapping <code>youtube.com</code>, <code>www.youtube.com</code>, and <code>m.youtube.com</code> to <code>restrict.youtube.com</code>.</li>
+            <li>NextDNS handles all of the above with one-click toggles in the Parental Controls dashboard. OpenDNS FamilyShield applies Google and Bing SafeSearch automatically.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># Pi-hole: Local DNS → CNAME Records
+google.com              → forcesafesearch.google.com
+www.google.com          → forcesafesearch.google.com
+google.co.uk            → forcesafesearch.google.com
+google.ca               → forcesafesearch.google.com
+bing.com                → strict.bing.com
+www.bing.com            → strict.bing.com
+youtube.com             → restrict.youtube.com
+www.youtube.com         → restrict.youtube.com
+m.youtube.com           → restrict.youtube.com
+
+# NextDNS equivalent (one-click in dashboard):
+# Parental Controls → Force Google SafeSearch:    ON
+# Parental Controls → YouTube Restricted Mode:    Strict
+# (Automatically applies to all regional Google domains)
+
+# Verify SafeSearch is locked (on any device on the network):
+# 1. Go to google.com/search?q=test
+# 2. Look for "SafeSearch is locked" text at the top of results</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">Using alternative search engines (DuckDuckGo, Yandex, Brave Search) that are not covered by these DNS overrides</span>
+              <span class="circ-counter">Counter: Block alternative search engine domains at the router or DNS level. Add <code>duckduckgo.com</code>, <code>search.brave.com</code>, <code>yandex.com</code>, and <code>search.yahoo.com</code> to your DNS blocklist, leaving only Google and Bing accessible.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Using regional Google domains (google.co.uk, google.fr) which may not be covered by a simple google.com override</span>
+              <span class="circ-counter">Counter: NextDNS and OpenDNS automatically apply SafeSearch enforcement across all regional Google domains. If using Pi-hole manually, add entries for the most common regional domains: co.uk, ca, com.au, de, fr, co.in.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Accessing YouTube content directly by URL or embedded video without going through the main YouTube search</span>
+              <span class="circ-counter">Counter: The CNAME override applies to all youtube.com traffic, not just the homepage. Restricted Mode is enforced at the YouTube server level when <code>restrict.youtube.com</code> is the resolved endpoint, so direct video URLs are also filtered.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 9 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-9" id="header-9" role="button" tabindex="0">
+        <div class="card-num">9</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Browser Extensions &mdash; uBlock Origin &amp; BlockSite</div>
+          <div class="card-tagline">Browser-layer filtering catches content that slips past DNS and network controls</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-9" role="region" aria-labelledby="header-9">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>No DNS filter is perfectly comprehensive. Browser extensions intercept page loads before rendering begins, blocking specific URLs, injecting ad and tracker blocking, and enforcing usage time limits. uBlock Origin with adult-content filter lists blocks categories that DNS resolvers miss, particularly content hosted on CDNs shared with legitimate sites. BlockSite adds schedule-based access controls and session limits directly in the browser.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <ol>
+            <li>Install <strong>uBlock Origin</strong> in Chrome, Firefox, or Edge from the browser's extension store.</li>
+            <li>Open the uBlock Origin dashboard (click the icon, click the gear). Go to "Filter Lists."</li>
+            <li>Under "Malware domains," enable all available lists. Under "Annoyances," enable uBlock filters. Add custom lists via URL (see example below).</li>
+            <li>Install <strong>BlockSite</strong> from the Chrome or Firefox extension store. Create a free account (enables cloud sync). Add blocked categories: Adult, Gambling.</li>
+            <li>Lock extensions so the child cannot remove them: on Windows, use Group Policy; on macOS, enable Chrome Managed Browser enrollment; or use Screen Time to block the ability to manage browser extensions at the OS level.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># uBlock Origin → My Filters tab (custom block rules):
+||tiktok.com^
+||snapchat.com^
+||reddit.com^
+||discord.com^
+# Block any page mentioning specific terms (advanced):
+! example.com##.adult-content-class
+
+# Add HaGeZi Multi-Pro list (comprehensive, maintained daily):
+# uBlock Origin → Filter Lists → Custom → Add:
+# https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/pro.txt
+
+# Windows Group Policy (Chrome managed):
+# HKLM\SOFTWARE\Policies\Google\Chrome
+#   ExtensionInstallForcelist:
+#     1 = "cjpalhdlnbpafiamejdnhcphjbkeiagm"  ← uBlock Origin
+#     2 = "eiimnmioipafcokbfikbljfdeojpcgbh"  ← BlockSite
+#   ExtensionInstallBlocklist: *
+#     (Prevents installation of any other extension)
+#   IncognitoModeAvailability: 1
+#     (Disables Incognito mode entirely)</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">Installing a different browser (Brave, Opera, Tor) where the extensions are not present</span>
+              <span class="circ-counter">Counter: Use Screen Time (iOS/macOS) or Group Policy (Windows) to whitelist only Chrome and Safari and block installation of new applications. On Windows, also use Group Policy to restrict executable launches to the approved browser list.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Disabling extensions from the browser's extension manager page</span>
+              <span class="circ-counter">Counter: The Group Policy approach above with <code>ExtensionInstallForcelist</code> makes extensions permanently active and non-removable. The remove button simply does not appear for force-installed extensions.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Using Incognito / Private Browsing mode, where extensions are disabled by default in Chrome</span>
+              <span class="circ-counter">Counter: Set <code>IncognitoModeAvailability = 1</code> in Group Policy to disable Incognito entirely. Alternatively, manually enable uBlock Origin in Incognito from the extensions page (requires admin/parent access to change).</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 10 -->
+    <div class="card">
+      <div class="card-header" aria-expanded="false" aria-controls="body-10" id="header-10" role="button" tabindex="0">
+        <div class="card-num">10</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Social Media Monitoring &mdash; Bark / Qustodio</div>
+          <div class="card-tagline">AI-powered keyword analysis detects grooming, bullying, and self-harm in private messages</div>
+        </div>
+        <i class="card-chevron" aria-hidden="true">&#9660;</i>
+      </div>
+      <div class="card-body" id="body-10" role="region" aria-labelledby="header-10">
+        <div class="sub-section">
+          <div class="sub-label why">Why</div>
+          <p>The leading risks on social media are not content exposure alone but behavioral: cyberbullying, predatory contact, self-harm conversations, and depression. These occur in private messages, not public posts &mdash; content filters cannot see them. Bark uses AI to analyze message content across 30+ platforms and alerts parents only when genuinely concerning patterns emerge, without requiring parents to read every message. This preserves age-appropriate privacy while maintaining a safety net for serious threats.</p>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label how">How to Set It Up</div>
+          <ol>
+            <li>Create a Bark account at bark.us. The standard plan is $14/month for up to five children.</li>
+            <li>Install the Bark app on the child's device and grant the required permissions (Accessibility service on Android; Screen Recording and VPN on iOS).</li>
+            <li>In the Bark parent dashboard, connect the child's social accounts: enter the child's Instagram, Snapchat, Gmail, iCloud, TikTok, and Discord credentials to grant Bark read-access to messages.</li>
+            <li>Configure alert sensitivity: Self-Harm to High, Sexual Content to High, Cyberbullying to High, Drug/Alcohol to Medium (reduces false positives).</li>
+            <li>Bark will send you a text and email alert only when it detects something concerning, not for every message.</li>
+          </ol>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label eg">Example Configuration</div>
+          <pre># Bark Dashboard → Alert Preferences → [Child Name]
+#
+# Alert me immediately (SMS + email) for:
+#   [HIGH] Self-harm / suicidal content
+#   [HIGH] Sexual content / predatory contact
+#   [HIGH] Cyberbullying (as sender or recipient)
+#   [HIGH] Depression and anxiety indicators
+#   [MED]  Drug and alcohol references
+#   [LOW]  Profanity (weekly digest only — reduces alert noise)
+#
+# Platforms monitored by Bark:
+#   iMessage, Instagram DMs, Snapchat, Gmail, Google Docs,
+#   TikTok DMs, Discord, YouTube comments, Twitter/X DMs,
+#   Facebook Messenger, WhatsApp, Kik, email (20+ providers)
+#
+# Bark does NOT show parents the full message text.
+# It shows a context snippet around the flagged content only.</pre>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label circ">How Kids Circumvent It</div>
+          <div class="circumvent-box">
+            <div class="circ-item">
+              <span class="circ-threat">Creating a secondary "finsta" or burner account that was never connected to Bark</span>
+              <span class="circ-counter">Counter: Bark monitors device activity logs and new app installations. New unrecognized accounts may appear in the activity report. Combine with App Store purchase approval so new social apps require your explicit permission to install.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Using gaming chat (Xbox Live, PlayStation Network, Roblox, Discord) instead of traditional social media, since parents rarely think to monitor it</span>
+              <span class="circ-counter">Counter: Bark monitors Discord. For Xbox and PlayStation, configure console-level parental controls in the account dashboard: Microsoft Family Safety app controls Xbox messaging and content; PlayStation Family Management controls PS5/PS4 messaging. Roblox has parental pin controls and message filtering for children under 13.</span>
+            </div>
+            <div class="circ-item">
+              <span class="circ-threat">Deleting message history before Bark's periodic sync captures it</span>
+              <span class="circ-counter">Counter: Bark syncs frequently and attempts to capture messages before deletion in most cases, but it is not foolproof against immediate deletion. The most resilient counter is an ongoing open conversation with your child about online safety, trust, and consequences &mdash; technology alone cannot substitute for relationship.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <div class="section-heading-wrap">
+      <div class="section-number">Section 2</div>
+      <h2>Why Monitoring Matters: The Research</h2>
+      <p class="section-intro">Ten peer-reviewed studies and authoritative reports documenting the documented harms of unmonitored youth internet use &mdash; and the measured benefits of parental engagement.</p>
+    </div>
+
+    <div class="articles-grid">
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Common Sense Media</span>
+          <span class="article-year">2021</span>
+        </div>
+        <div class="article-title">The Common Sense Census: Media Use by Tweens and Teens</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          8 hrs 39 min per day &mdash; average teen screen time, excluding schoolwork
+        </div>
+        <p class="article-summary">The largest ongoing study of youth media consumption in the United States, surveying over 1,500 children ages 8-18. The 2021 edition documented a 17% acceleration in screen time over two years, with tweens averaging 5 hours 33 minutes daily and teens averaging 8 hours 39 minutes. These figures do not include time spent on screens for school assignments.</p>
+        <a class="article-link" href="https://www.commonsensemedia.org/research" rel="noopener noreferrer" target="_blank">commonsensemedia.org/research</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Pew Research Center</span>
+          <span class="article-year">2022&ndash;2024</span>
+        </div>
+        <div class="article-title">Teens, Social Media and Technology</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          48% of teens say they are online "almost constantly"
+        </div>
+        <p class="article-summary">Pew's annual survey of 1,316 U.S. teenagers documents near-universal social media adoption and the platforms' dominance in daily teen life. YouTube is used by 93% of teens, followed by TikTok (63%), Snapchat (60%), and Instagram (59%). More than nine-in-ten teens report using the internet at least daily, with nearly half reporting near-constant connectivity.</p>
+        <a class="article-link" href="https://www.pewresearch.org/internet" rel="noopener noreferrer" target="_blank">pewresearch.org/internet</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">American Academy of Pediatrics</span>
+          <span class="article-year">2016</span>
+        </div>
+        <div class="article-title">Media and Young Minds &mdash; AAP Policy Statement</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          No screens before 18 months; max 1 hr/day ages 2&ndash;5
+        </div>
+        <p class="article-summary">The foundational AAP policy statement synthesizing research on cognitive development, attention, sleep disruption, and social development in relation to screen exposure. The statement establishes evidence-based guidelines across developmental age groups and emphasizes the importance of parental co-viewing and active engagement rather than passive consumption. Published in the journal Pediatrics, November 2016.</p>
+        <a class="article-link" href="https://publications.aap.org" rel="noopener noreferrer" target="_blank">publications.aap.org</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Cyberbullying Research Center</span>
+          <span class="article-year">2004&ndash;2025</span>
+        </div>
+        <div class="article-title">Summary of Cyberbullying Research: Hinduja &amp; Patchin</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          Lifetime victimization rose from 33.6% (2016) to 58.2% (2025)
+        </div>
+        <p class="article-summary">The most comprehensive longitudinal research on cyberbullying prevalence in the United States, spanning 21 years of data collection. Researchers Sameer Hinduja and Justin Patchin have tracked a consistent rise in both perpetration and victimization rates, with strong correlations between cyberbullying victimization and depression, anxiety, self-harm, and academic decline. Recent data shows boys are now more heavily involved than in earlier cohorts.</p>
+        <a class="article-link" href="https://cyberbullying.org/summary-of-our-cyberbullying-research" rel="noopener noreferrer" target="_blank">cyberbullying.org</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">JAMA Pediatrics</span>
+          <span class="article-year">2019</span>
+        </div>
+        <div class="article-title">Association of Screen Time and Depression in Adolescence &mdash; Boers et al.</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          Social media and TV use associated with measurable depressive symptom increases
+        </div>
+        <p class="article-summary">A longitudinal cohort study following 3,826 adolescents measuring screen time and depression scores at multiple time points. The study found significant within-person associations between social media use and television viewing with subsequent increases in depressive symptoms, controlling for prior depression. The dose-response relationship was stronger for social media than for other screen activities. Published in JAMA Pediatrics, 173(9), 2019.</p>
+        <a class="article-link" href="https://jamanetwork.com/journals/jamapediatrics" rel="noopener noreferrer" target="_blank">jamanetwork.com</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Clinical Psychology: Science &amp; Practice</span>
+          <span class="article-year">2018</span>
+        </div>
+        <div class="article-title">Depressive Symptoms, Suicide Rates, and Increased Screen Time After 2010 &mdash; Twenge et al.</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          50% increase in teen major depression since 2011; 5+ hrs/day users 2x more likely to be depressed
+        </div>
+        <p class="article-summary">Analysis of data from 612,000 adolescents via the National Survey on Drug Use and Health (2005-2017) found a 50% increase in major depressive episodes among teens between 2011 and 2015, coinciding precisely with the mass adoption of smartphones. Adolescents reporting five to seven hours of daily phone use were twice as likely to report depression and suicidal ideation compared to those using phones one to two hours daily. Published in Clinical Psychological Science.</p>
+        <a class="article-link" href="https://journals.sagepub.com" rel="noopener noreferrer" target="_blank">journals.sagepub.com</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Internet Matters (UK)</span>
+          <span class="article-year">2023</span>
+        </div>
+        <div class="article-title">Children's Wellbeing in a Digital World Index</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          53% of children saw something uncomfortable online; only 19% of parents were aware
+        </div>
+        <p class="article-summary">Annual UK-based index measuring children's online wellbeing across safety, relationships, skills, and opportunity dimensions. The 2023 report surveyed 2,000 parents and children and identified a significant gap between children's reported experiences and parental awareness of those experiences. 27% of children were contacted by strangers, and 22% encountered violent content, yet the majority of parents reported no awareness of these incidents.</p>
+        <a class="article-link" href="https://www.internetmatters.org/hub/research" rel="noopener noreferrer" target="_blank">internetmatters.org</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Journal of Adolescent Health</span>
+          <span class="article-year">2015&ndash;2020</span>
+        </div>
+        <div class="article-title">Adolescent Exposure to Online Pornography &mdash; Beyens, Vandenbosch &amp; Eggermont</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          59% of adolescents exposed to online pornography; 24% weekly; most first exposure before age 13
+        </div>
+        <p class="article-summary">Cross-sectional analysis of over 10,000 European adolescents examining prevalence, frequency, and psychosocial correlates of online pornography exposure. The study found that frequent pornography exposure correlates with distorted sexual attitudes, increased sexual risk behaviors, anxiety, depression, and academic performance decline. A systematic review published in the same journal in 2020 confirmed the findings in a broader sample of 110,000 young people across 39 studies.</p>
+        <a class="article-link" href="https://www.adolescenthealth.org" rel="noopener noreferrer" target="_blank">adolescenthealth.org</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">NSPCC (UK)</span>
+          <span class="article-year">Annual</span>
+        </div>
+        <div class="article-title">How Safe Are Our Children? Annual Report</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          Online child sexual abuse reports to the IWF increased 360% over five years to 2023
+        </div>
+        <p class="article-summary">The NSPCC's authoritative annual report aggregates data from UK child protection services, police records, and national surveys to provide year-on-year trend data on child safety risks including online offenses. The 2020 edition reported approximately an 80% increase in online child sexual abuse crimes recorded by police in recent years. The Internet Watch Foundation data shows exponential growth in online child sexual abuse material being reported and removed annually.</p>
+        <a class="article-link" href="https://learning.nspcc.org.uk/research-resources/how-safe-are-our-children" rel="noopener noreferrer" target="_blank">nspcc.org.uk</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Child Mind Institute</span>
+          <span class="article-year">2017</span>
+        </div>
+        <div class="article-title">Children's Mental Health Report: Smartphones and Social Media</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          Girls using social media 5+ hrs/day are 66% more likely to have at least one suicide risk factor
+        </div>
+        <p class="article-summary">The Child Mind Institute synthesizes clinical and research evidence on the mental health impacts of smartphone and social media use in adolescents, drawing on data from over 1,500 clinical cases and peer-reviewed literature. The report is widely cited by pediatricians and school counselors and covers the mechanisms behind anxiety amplification, depression, sleep disruption from nighttime device use, and social comparison effects specific to image-heavy platforms. Available free at childmind.org.</p>
+        <a class="article-link" href="https://childmind.org/education/childrens-mental-health-report" rel="noopener noreferrer" target="_blank">childmind.org</a>
+      </div>
+
+    </div><!-- /articles-grid -->
+  </div>
+</section>
+
+<!-- QUICK-START CHECKLIST -->
+<section id="quickstart">
+  <div class="container">
+    <div class="section-heading-wrap">
+      <div class="section-number">Start Here</div>
+      <h2>Your Ten-Step Action Checklist</h2>
+      <p class="section-intro">Ranked by ease and impact. Start at the top and work down. Each step builds on the previous one.</p>
+    </div>
+
+    <ul class="checklist" aria-label="Parent action checklist">
+      <li>
+        <div class="check-num">1</div>
+        <div class="check-text">
+          <strong>Change your router admin password</strong>
+          Right now. Default passwords are printed on the router and searchable online. This takes 90 seconds and stops everything else from being undone.
+        </div>
+      </li>
+      <li>
+        <div class="check-num">2</div>
+        <div class="check-text">
+          <strong>Set DNS to CleanBrowsing Family Filter</strong>
+          Primary: 185.228.168.168 / Secondary: 185.228.169.168 in your router. Free, instant, covers every device on the network. Takes five minutes.
+        </div>
+      </li>
+      <li>
+        <div class="check-num">3</div>
+        <div class="check-text">
+          <strong>Enable Screen Time (iOS) or Family Link (Android)</strong>
+          Set a Screen Time passcode unrelated to the device PIN. Enable Content Restrictions and set a Downtime schedule. Takes 10 minutes per device.
+        </div>
+      </li>
+      <li>
+        <div class="check-num">4</div>
+        <div class="check-text">
+          <strong>Block app installs without approval</strong>
+          Screen Time: require your Apple ID password for all purchases. Family Link: enable "Approve apps" so every Play Store download requires your tap.
+        </div>
+      </li>
+      <li>
+        <div class="check-num">5</div>
+        <div class="check-text">
+          <strong>Enforce SafeSearch on Google and YouTube</strong>
+          Add the CNAME records in your DNS/router or use the NextDNS one-click toggle. Eliminates most graphic content from search results network-wide.
+        </div>
+      </li>
+      <li>
+        <div class="check-num">6</div>
+        <div class="check-text">
+          <strong>Install NextDNS profile on child devices</strong>
+          Extends DNS filtering to mobile data and away-from-home networks. The iOS profile installs in under two minutes and survives reboots.
+        </div>
+      </li>
+      <li>
+        <div class="check-num">7</div>
+        <div class="check-text">
+          <strong>Set carrier family controls for mobile data</strong>
+          Verizon Smart Family, T-Mobile FamilyMode, or AT&T Secure Family. Applies content filtering on LTE/5G where home controls cannot reach.
+        </div>
+      </li>
+      <li>
+        <div class="check-num">8</div>
+        <div class="check-text">
+          <strong>Subscribe to Bark for message monitoring</strong>
+          Connect your child's social accounts. Configure Self-Harm and Sexual Content alerts to High. You will only be notified when something concerning is detected.
+        </div>
+      </li>
+      <li>
+        <div class="check-num">9</div>
+        <div class="check-text">
+          <strong>Consider a Firewalla for network-level hardware control</strong>
+          Especially valuable for households with gaming consoles, smart TVs, and multiple devices where software controls cannot be installed on every device.
+        </div>
+      </li>
+      <li>
+        <div class="check-num">10</div>
+        <div class="check-text">
+          <strong>Have the conversation</strong>
+          Tell your child what you have set up and why. Children who understand the reasoning behind rules are significantly less likely to actively circumvent them. No tool replaces trust.
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-title">Keep Your Kids Safe Online</div>
+    <p>This guide is provided for informational purposes only. Product names, DNS addresses, and platform features are accurate as of the date of writing but may change. Verify current configuration steps with each vendor's official documentation before implementation.</p>
+    <p>No tools described here are a substitute for ongoing parental supervision, age-appropriate conversations about internet safety, and the gradual extension of trust and autonomy as children demonstrate judgment. The goal is not permanent surveillance but scaffolded independence.</p>
+    <p>Citations in the Research section refer to publicly available studies. Links point to the organizations' main research portals. The studies themselves are available through academic libraries and, in many cases, free to the public on the publishers' websites.</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // Accordion: click to expand/collapse, one open at a time
+  var headers = document.querySelectorAll('.card-header');
+  headers.forEach(function(header) {
+    header.addEventListener('click', function() {
+      var body = this.nextElementSibling;
+      var isOpen = body.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.card-body.open').forEach(function(b) {
+        b.classList.remove('open');
+        b.previousElementSibling.setAttribute('aria-expanded', 'false');
+      });
+
+      // Open this one if it was closed
+      if (!isOpen) {
+        body.classList.add('open');
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    // Keyboard accessibility
+    header.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  });
+
+  // Toggle All button
+  var toggleBtn = document.getElementById('toggle-all');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      var anyOpen = document.querySelector('.card-body.open');
+      document.querySelectorAll('.card-body').forEach(function(body) {
+        if (anyOpen) {
+          body.classList.remove('open');
+          body.previousElementSibling.setAttribute('aria-expanded', 'false');
+        } else {
+          body.classList.add('open');
+          body.previousElementSibling.setAttribute('aria-expanded', 'true');
+        }
+      });
+      toggleBtn.textContent = anyOpen ? 'Open All' : 'Close All';
+    });
+  }
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var target = document.getElementById(this.getAttribute('href').slice(1));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Active nav link on scroll
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+  function updateActiveNav() {
+    var scrollY = window.scrollY + 90;
+    var active = null;
+    sections.forEach(function(section) {
+      if (section.offsetTop <= scrollY) {
+        active = section.id;
+      }
+    });
+    navLinks.forEach(function(link) {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + active);
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+})();
+</script>
+
+</body>
+</html>
