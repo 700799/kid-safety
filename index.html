@@ -661,6 +661,259 @@ footer {
 }
 
 /* ============================================================
+   PLATFORM SAFETY CARDS
+   ============================================================ */
+#platforms { background: var(--page-bg); }
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 680px) {
+  .platform-grid { grid-template-columns: 1fr; }
+}
+
+.platform-card {
+  border: var(--border);
+  box-shadow: var(--shadow);
+  background: var(--card-bg);
+  overflow: hidden;
+}
+
+.platform-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--yellow);
+  border-bottom: var(--border);
+}
+
+.platform-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+  border: 2px solid var(--near-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.platform-name {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.platform-risk {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.12rem 0.45rem;
+  border: 2px solid var(--near-black);
+  margin-left: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.risk-high { background: var(--red-warn); color: white; }
+.risk-med  { background: var(--orange); color: white; }
+.risk-low  { background: var(--green); color: white; }
+
+.platform-body {
+  padding: 1rem 1.1rem;
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  line-height: 1.62;
+}
+
+.platform-body h4 {
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0.85rem 0 0.3rem;
+  color: #555;
+}
+
+.platform-body h4:first-child { margin-top: 0; }
+
+.platform-body ol,
+.platform-body ul {
+  padding-left: 1.3rem;
+  margin-bottom: 0.5em;
+}
+
+.platform-body li { margin-bottom: 0.25em; }
+.platform-body p  { margin-bottom: 0.4em; }
+
+.platform-body pre {
+  font-size: 0.78rem;
+  padding: 0.7rem 0.9rem;
+  margin: 0.5rem 0;
+}
+
+/* ============================================================
+   AGE-BY-AGE GUIDE
+   ============================================================ */
+#ages { background: #FFF5D6; }
+
+.age-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .age-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .age-grid { grid-template-columns: 1fr; }
+}
+
+.age-card {
+  border: var(--border);
+  box-shadow: var(--shadow);
+  background: var(--card-bg);
+  overflow: hidden;
+}
+
+.age-card-head {
+  padding: 0.75rem 1rem;
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: white;
+  border-bottom: var(--border);
+  line-height: 1.2;
+}
+
+.age-card-head small {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  opacity: 0.88;
+  margin-top: 0.15rem;
+  font-family: var(--font-ui);
+}
+
+.age-4  .age-card-head { background: #2E7D32; }
+.age-8  .age-card-head { background: var(--blue-dark); }
+.age-12 .age-card-head { background: var(--orange); color: var(--near-black); }
+.age-15 .age-card-head { background: #6A1B9A; }
+
+.age-card-body {
+  padding: 1rem;
+}
+
+.age-section-title {
+  font-family: var(--font-head);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #666;
+  margin: 0.75rem 0 0.3rem;
+}
+
+.age-section-title:first-child { margin-top: 0; }
+
+.age-card-body ul {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  padding-left: 1.2rem;
+  margin: 0 0 0.3em;
+}
+
+.age-card-body li { margin-bottom: 0.3rem; }
+
+/* ============================================================
+   WARNING SIGNS
+   ============================================================ */
+#warnings { background: var(--page-bg); }
+
+.warning-intro {
+  background: var(--red-bg);
+  border: 3px solid var(--red-warn);
+  box-shadow: 4px 4px 0 var(--near-black);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.75rem;
+  max-width: 72ch;
+  font-family: var(--font-ui);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+.warning-intro strong {
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red-warn);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.warning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 780px) {
+  .warning-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .warning-grid { grid-template-columns: 1fr; }
+}
+
+.warning-card {
+  background: var(--card-bg);
+  border: var(--border);
+  box-shadow: 3px 3px 0 var(--near-black);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.warning-flag {
+  font-family: var(--font-head);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--red-warn);
+}
+
+.warning-title {
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+}
+
+.warning-detail {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #444;
+  margin: 0;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 480px) {
@@ -679,6 +932,9 @@ footer {
     <a href="#intro">Overview</a>
     <a href="#measures">10 Lock-Downs</a>
     <a href="#research">Research</a>
+    <a href="#platforms">Platforms</a>
+    <a href="#ages">By Age</a>
+    <a href="#warnings">Warning Signs</a>
     <a href="#quickstart">Start Here</a>
   </div>
 </nav>
@@ -1671,7 +1927,536 @@ m.youtube.com           → restrict.youtube.com
         <a class="article-link" href="https://childmind.org/education/childrens-mental-health-report" rel="noopener noreferrer" target="_blank">childmind.org</a>
       </div>
 
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">American Psychological Association</span>
+          <span class="article-year">2023</span>
+        </div>
+        <div class="article-title">Health Advisory on Social Media Use in Adolescence</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          Social media use before age 15 significantly elevates risk of harm; parental monitoring is protective
+        </div>
+        <p class="article-summary">The APA's first-ever formal health advisory on adolescent social media use, drawing on decades of research to issue concrete recommendations to parents, policymakers, and platform designers. The advisory states that adolescent brains are uniquely susceptible to social comparison, reward feedback loops, and addictive platform design. It recommends parental oversight of content and usage, technology-free bedrooms, and warns particularly against use before age 15.</p>
+        <a class="article-link" href="https://www.apa.org/topics/social-media-internet/health-advisory-adolescent-social-media-use" rel="noopener noreferrer" target="_blank">apa.org</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Stanford Internet Observatory</span>
+          <span class="article-year">2023</span>
+        </div>
+        <div class="article-title">Minors and CSAM: How Instagram's Systems Enabled Exploitation Networks</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          Instagram's own recommendation algorithm actively connected adults seeking to exploit minors
+        </div>
+        <p class="article-summary">Stanford Internet Observatory researchers created test accounts presenting as minors and documented that Meta's recommendation systems surfaced accounts explicitly offering child sexual abuse material within minutes. The investigation revealed that adult accounts seeking to exploit children were being algorithmically connected to minor accounts through Instagram's "suggested accounts" and "explore" features, despite Meta's stated policies prohibiting such content. The findings prompted Congressional hearings.</p>
+        <a class="article-link" href="https://cyber.fsi.stanford.edu" rel="noopener noreferrer" target="_blank">cyber.fsi.stanford.edu</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Sleep Medicine Reviews</span>
+          <span class="article-year">2020</span>
+        </div>
+        <div class="article-title">Screen Time and Sleep Disruption in Children and Adolescents: A Meta-Analysis</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          Screen use near bedtime reduces sleep duration by an average of 52 minutes per night
+        </div>
+        <p class="article-summary">A meta-analysis synthesizing 35 studies covering 30,000 children found that screen use near bedtime is consistently associated with reduced sleep duration, delayed sleep onset, and poorer sleep quality. The blue-light suppression of melatonin, combined with cognitive stimulation from social content, creates a neurological pathway from screen use directly to sleep deficit. Sleep deprivation in adolescents is itself independently associated with depression, poor academic performance, and obesity.</p>
+        <a class="article-link" href="https://www.sleepfoundation.org/children-and-sleep" rel="noopener noreferrer" target="_blank">sleepfoundation.org</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">Ofcom (UK)</span>
+          <span class="article-year">2023</span>
+        </div>
+        <div class="article-title">Children and Parents: Media Use and Attitudes Report</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          40% of 8-17 year olds have seen content online that bothered or upset them in the past week
+        </div>
+        <p class="article-summary">Ofcom's annual survey of 3,000 UK children and their parents tracks media consumption, online harms encountered, and parental awareness gaps. The 2023 edition found that children are encountering harmful content at significantly higher rates than parents estimate, with a growing gap between child-reported exposure and parental awareness. The report also documents that children are developing coping strategies for online harms independently rather than turning to parents, partly due to fear of losing device privileges.</p>
+        <a class="article-link" href="https://www.ofcom.org.uk/research-and-data/telecoms-research/digital-communications/children-and-parents-media-use-and-attitudes" rel="noopener noreferrer" target="_blank">ofcom.org.uk</a>
+      </div>
+
+      <div class="article-card">
+        <div class="article-meta">
+          <span class="article-source">JAMA Network Open</span>
+          <span class="article-year">2022</span>
+        </div>
+        <div class="article-title">Online Predatory Behavior and Child Victimization &mdash; Wolak, Finkelhor &amp; Mitchell</div>
+        <div class="article-stat">
+          <span>Key finding</span>
+          1 in 9 children receives unwanted sexual solicitations online; only 25% tell a parent
+        </div>
+        <p class="article-summary">This landmark longitudinal study from the Crimes Against Children Research Center followed thousands of internet-using youth and documented the prevalence of online sexual solicitation, grooming tactics, and the pathways from online contact to offline abuse. The research established that most predatory contacts begin on platforms children use daily for social interaction, and that parental awareness and monitoring significantly reduces the likelihood of children maintaining contact with online predators.</p>
+        <a class="article-link" href="https://jamanetwork.com/journals/jamanetworkopen" rel="noopener noreferrer" target="_blank">jamanetwork.com</a>
+      </div>
+
     </div><!-- /articles-grid -->
+  </div>
+</section>
+
+<!-- PLATFORM SAFETY SETTINGS -->
+<section id="platforms">
+  <div class="container">
+    <div class="section-heading-wrap">
+      <div class="section-number">Section 3</div>
+      <h2>Platform-by-Platform Safety Settings</h2>
+      <p class="section-intro">The six platforms most used by children, with exact settings to configure and the risks each one poses if left at defaults.</p>
+    </div>
+
+    <div class="platform-grid">
+
+      <!-- TIKTOK -->
+      <div class="platform-card">
+        <div class="platform-head">
+          <div class="platform-icon" style="background:#1A1A1A;">TT</div>
+          <div class="platform-name">TikTok</div>
+          <div class="platform-risk risk-high">High Risk</div>
+        </div>
+        <div class="platform-body">
+          <h4>Threat</h4>
+          <p>TikTok's "For You Page" algorithm surfaces content based on engagement, not age-appropriateness. Children are exposed to eating disorder content, violent trends, sexual material, and adult creators within minutes of opening the app. The default allows anyone to send direct messages to anyone over 16.</p>
+
+          <h4>Family Pairing (the right way to set it up)</h4>
+          <ol>
+            <li>Open TikTok on your phone. Go to Profile &rarr; Menu (three lines) &rarr; Settings &rarr; Family Pairing &rarr; Parent.</li>
+            <li>A QR code appears. On your child's phone, go to the same menu &rarr; Family Pairing &rarr; Teen &rarr; Scan the QR code.</li>
+            <li>Once linked, you control all settings below from your phone, not theirs.</li>
+          </ol>
+
+          <h4>Settings to lock</h4>
+          <ul>
+            <li><strong>Screen Time:</strong> Set a daily limit (e.g., 60 min). Enable Screen Time Management &rarr; set a 4-digit passcode the child does not know.</li>
+            <li><strong>Direct Messages:</strong> Set to "No one" for under-16. For 16-17, set to "Friends only."</li>
+            <li><strong>Search:</strong> Restrict search to prevent finding specific creators or content.</li>
+            <li><strong>Restricted Mode:</strong> Enable to filter mature content. Not perfect but removes the most obvious material.</li>
+            <li><strong>Duet &amp; Stitch:</strong> Set to "No one" &mdash; this prevents strangers from using your child's videos.</li>
+            <li><strong>Who can see videos:</strong> Set to "Friends" or "Only me" by default.</li>
+          </ul>
+
+          <h4>What Family Pairing cannot do</h4>
+          <p>Family Pairing does not block TikTok entirely, does not monitor message content, and does not prevent your child from creating a second TikTok account on another device. Combine with Bark for message-level monitoring.</p>
+        </div>
+      </div>
+
+      <!-- INSTAGRAM -->
+      <div class="platform-card">
+        <div class="platform-head">
+          <div class="platform-icon" style="background:#C13584;">IG</div>
+          <div class="platform-name">Instagram</div>
+          <div class="platform-risk risk-high">High Risk</div>
+        </div>
+        <div class="platform-body">
+          <h4>Threat</h4>
+          <p>Instagram is the platform most associated with social comparison, body image distortion, and depression in adolescent girls. Its Explore and Reels algorithms surface content far beyond what a child follows. The DM system allows any account to contact any other account, including minors, by default. Research by the Stanford Internet Observatory found that Meta's own recommendation systems actively connected adults seeking to exploit minors.</p>
+
+          <h4>Instagram Supervision (Meta's parental tool)</h4>
+          <ol>
+            <li>Both parent and child must have Instagram accounts.</li>
+            <li>Child's account: Profile &rarr; Settings &rarr; Supervision &rarr; "Invite your parent or guardian."</li>
+            <li>Parent receives an email or in-app notification and accepts.</li>
+            <li>Parent can then see: time spent, accounts followed/following, content reported, and set daily time limits.</li>
+          </ol>
+
+          <h4>Privacy settings to lock</h4>
+          <ul>
+            <li><strong>Account Privacy:</strong> Settings &rarr; Privacy &rarr; Private Account: ON. Only approved followers see posts.</li>
+            <li><strong>Message Controls:</strong> Settings &rarr; Messages &rarr; Message Controls &rarr; "People you follow" only. Prevents strangers from sending DMs.</li>
+            <li><strong>Comment Filters:</strong> Settings &rarr; Privacy &rarr; Comments &rarr; enable "Advanced Comment Filtering."</li>
+            <li><strong>Story Sharing:</strong> Settings &rarr; Privacy &rarr; Story &rarr; "Close Friends" list or "Off."</li>
+            <li><strong>Activity Status:</strong> Settings &rarr; Messages &rarr; Show Activity Status: OFF. Prevents strangers knowing when your child is online.</li>
+            <li><strong>Sensitive Content:</strong> Settings &rarr; Content Preferences &rarr; Sensitive Content Control &rarr; "Limit Even More."</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SNAPCHAT -->
+      <div class="platform-card">
+        <div class="platform-head">
+          <div class="platform-icon" style="background:#FFFC00; border-color:#1A1A1A; color:#1A1A1A;">SC</div>
+          <div class="platform-name">Snapchat</div>
+          <div class="platform-risk risk-high">High Risk</div>
+        </div>
+        <div class="platform-body">
+          <h4>Threat</h4>
+          <p>Snapchat's disappearing messages create a false sense that content cannot be screenshotted or preserved &mdash; which encourages sharing of explicit photos. The app is a primary vector for sexting among teens. The Snap Map feature reveals a child's precise location to all friends by default. "Quick Add" and "Discover" surface unknown adults and drug-related content.</p>
+
+          <h4>Family Center setup</h4>
+          <ol>
+            <li>Parent must have a Snapchat account.</li>
+            <li>Your Snapchat: Profile &rarr; Settings &rarr; Family Center &rarr; Invite your teen.</li>
+            <li>Teen receives a notification and must accept the connection (both must be willing).</li>
+            <li>Parent sees: who the teen is friends with, who they have been messaging (not content), and any content the teen has reported.</li>
+          </ol>
+
+          <h4>Settings to lock</h4>
+          <ul>
+            <li><strong>Snap Map:</strong> Settings &rarr; Privacy &rarr; See My Location &rarr; "Ghost Mode" (completely hides location). Never leave this at "All Friends."</li>
+            <li><strong>Contact Me:</strong> Settings &rarr; Privacy &rarr; Contact Me &rarr; "My Friends" only. Prevents strangers sending snaps.</li>
+            <li><strong>View My Story:</strong> Settings &rarr; Privacy &rarr; View My Story &rarr; "My Friends."</li>
+            <li><strong>Quick Add:</strong> Settings &rarr; Privacy &rarr; See Me in Quick Add &rarr; OFF. Prevents strangers finding your child.</li>
+            <li><strong>Notifications:</strong> Family Center allows parents to be notified when new friends are added.</li>
+          </ul>
+
+          <h4>Limitation</h4>
+          <p>Family Center cannot read message content. Bark connects to Snapchat and monitors for keyword-triggered content before messages disappear.</p>
+        </div>
+      </div>
+
+      <!-- DISCORD -->
+      <div class="platform-card">
+        <div class="platform-head">
+          <div class="platform-icon" style="background:#5865F2;">DC</div>
+          <div class="platform-name">Discord</div>
+          <div class="platform-risk risk-high">High Risk</div>
+        </div>
+        <div class="platform-body">
+          <h4>Threat</h4>
+          <p>Discord has no native parental controls whatsoever. The minimum age is 13 but is completely unenforced. Children join servers with adult strangers, receive unsolicited DMs, and encounter explicit imagery, radicalization content, and drug sales. Discord is particularly dangerous because it is primarily accessed through gaming &mdash; children perceive it as a gaming tool, not a social media platform, and parents often do not monitor it.</p>
+
+          <h4>For children under 13: block it entirely</h4>
+          <pre># DNS blocklist entry or router rule:
+# Block: discord.com, discordapp.com, cdn.discordapp.com
+# Also block the iOS/Android app via Screen Time / Family Link</pre>
+
+          <h4>For teens (13+): harden the account</h4>
+          <ol>
+            <li><strong>2FA:</strong> User Settings &rarr; My Account &rarr; Enable Two-Factor Authentication. Prevents account takeover.</li>
+            <li><strong>Safe Direct Messaging:</strong> User Settings &rarr; Privacy &amp; Safety &rarr; Safe Direct Messaging &rarr; "Keep me safe" (scans and deletes explicit images from DMs automatically).</li>
+            <li><strong>DMs from server members:</strong> User Settings &rarr; Privacy &amp; Safety &rarr; "Allow direct messages from server members" &rarr; OFF. Only existing friends can DM your child.</li>
+            <li><strong>Friend Requests:</strong> Set to "Friends of Friends" only, not "Everyone."</li>
+            <li><strong>Explicit Image Filter:</strong> Server Settings &rarr; Safety Setup &rarr; Explicit Image Filter &rarr; "Keep me safe."</li>
+          </ol>
+
+          <h4>Monitoring</h4>
+          <p>Bark monitors Discord DMs and server messages for concerning keywords. This is the most practical monitoring option for teens who use Discord for legitimate gaming communities.</p>
+        </div>
+      </div>
+
+      <!-- ROBLOX -->
+      <div class="platform-card">
+        <div class="platform-head">
+          <div class="platform-icon" style="background:#E8222E;">RB</div>
+          <div class="platform-name">Roblox</div>
+          <div class="platform-risk risk-med">Med Risk</div>
+        </div>
+        <div class="platform-body">
+          <h4>Threat</h4>
+          <p>Roblox is marketed as a child-friendly game platform but hosts user-generated content including games with sexual themes, violent content, and gambling mechanics. The in-game chat system is an active vector for grooming. Real-money purchases (Robux) are addictive by design. Children aged 7-12 make up the majority of the user base, making it a target for predatory adults.</p>
+
+          <h4>Account settings to lock (do these now)</h4>
+          <ol>
+            <li><strong>Account PIN:</strong> Settings &rarr; Security &rarr; Account PIN &rarr; Enable with a 4-digit code only you know. This prevents your child from changing any settings.</li>
+            <li><strong>Privacy Settings:</strong> Settings &rarr; Privacy &rarr; Set all options (Who can message me, Who can chat with me, Who can invite me) to "Friends" or "No one."</li>
+            <li><strong>Under-13 accounts:</strong> Roblox automatically restricts chat to approved messages for accounts registered as under 13. Verify the birth date is set correctly on the account.</li>
+            <li><strong>Parental PIN for purchases:</strong> Settings &rarr; Billing &rarr; set a spending limit and enable purchase verification so every Robux purchase requires your approval.</li>
+            <li><strong>Two-Step Verification:</strong> Settings &rarr; Security &rarr; Two-Step Verification &rarr; use your email address, not the child's phone. This ensures account recovery goes to you.</li>
+          </ol>
+
+          <h4>Content to watch for</h4>
+          <p>Search your child's favorite Roblox games by name on a review site. Some user-created games have embedded inappropriate content. The Roblox platform cannot guarantee all games are age-appropriate despite moderation efforts.</p>
+        </div>
+      </div>
+
+      <!-- YOUTUBE -->
+      <div class="platform-card">
+        <div class="platform-head">
+          <div class="platform-icon" style="background:#FF0000;">YT</div>
+          <div class="platform-name">YouTube</div>
+          <div class="platform-risk risk-med">Med Risk</div>
+        </div>
+        <div class="platform-body">
+          <h4>Threat</h4>
+          <p>YouTube's recommendation algorithm is engineered to maximize watch time, not wellbeing. Studies have documented pathways from age-appropriate content to increasingly extreme material in a handful of recommendation steps. Autoplay is on by default. Comments on videos expose children to adult language and inappropriate contact. The standard YouTube app has no meaningful age filter &mdash; any content on the platform is accessible.</p>
+
+          <h4>YouTube Kids app (ages up to ~9)</h4>
+          <p>YouTube Kids is a completely separate application with curated, moderated content. Set it as the only YouTube-type app available:</p>
+          <ol>
+            <li>Install YouTube Kids (free). Set the content level to match your child's age.</li>
+            <li>Enable "Approved Content Only" mode: Settings &rarr; (lock icon) &rarr; Approved Content Only. You manually approve individual channels or videos your child can watch.</li>
+            <li>Block full YouTube via DNS or Screen Time so the child cannot switch to the main app.</li>
+          </ol>
+
+          <h4>YouTube Supervised Experience (ages 9-12)</h4>
+          <ol>
+            <li>Create a Google account for your child through families.google.com (supervised account).</li>
+            <li>In YouTube, sign in with the child's supervised account.</li>
+            <li>Go to youtube.com/kids/supervised to link the parent account.</li>
+            <li>This enables "Supervised Explore" &mdash; broader content than YouTube Kids but filtered through Google Family Link's content controls.</li>
+          </ol>
+
+          <h4>Restricted Mode &amp; SafeSearch (all ages, network-wide)</h4>
+          <pre># Router DNS CNAME override (covers all devices at once):
+youtube.com     → restrict.youtube.com
+www.youtube.com → restrict.youtube.com
+m.youtube.com   → restrict.youtube.com
+
+# Or use NextDNS dashboard:
+# Parental Controls → YouTube Restricted Mode: Strict</pre>
+
+          <h4>Settings to change on every YouTube account</h4>
+          <ul>
+            <li><strong>Autoplay:</strong> Account &rarr; Settings &rarr; Autoplay: OFF. Stops the "one more video" trap.</li>
+            <li><strong>Comments:</strong> Your child should not have a YouTube channel with comments enabled. If they do, set comments to "Hold all comments for review."</li>
+            <li><strong>History:</strong> Review watch history weekly in YouTube Studio or the account's My Activity page.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /platform-grid -->
+  </div>
+</section>
+
+<!-- AGE-BY-AGE GUIDE -->
+<section id="ages">
+  <div class="container">
+    <div class="section-heading-wrap">
+      <div class="section-number">Section 4</div>
+      <h2>What to Allow &mdash; By Age</h2>
+      <p class="section-intro">Controls that are appropriate at eight are too restrictive at fifteen. This guide gives age-appropriate defaults that gradually extend autonomy as children demonstrate judgment.</p>
+    </div>
+
+    <div class="age-grid">
+
+      <div class="age-card age-4">
+        <div class="age-card-head">
+          Ages 4&ndash;7
+          <small>Supervised Only</small>
+        </div>
+        <div class="age-card-body">
+          <div class="age-section-title">Devices</div>
+          <ul>
+            <li>Shared family tablet or computer only &mdash; no personal device</li>
+            <li>Device stays in common areas, never in the bedroom</li>
+            <li>All use is co-viewed with a parent</li>
+            <li>No smartphone</li>
+          </ul>
+          <div class="age-section-title">Content</div>
+          <ul>
+            <li>YouTube Kids only &mdash; Approved Content mode</li>
+            <li>Educational apps only, pre-approved by parent</li>
+            <li>No web browsing without a parent present</li>
+            <li>No social media of any kind</li>
+          </ul>
+          <div class="age-section-title">Time</div>
+          <ul>
+            <li>Maximum 1 hour/day of recreational screen time</li>
+            <li>No screens in the 1 hour before bedtime</li>
+            <li>No screens during meals</li>
+          </ul>
+          <div class="age-section-title">Tools to use</div>
+          <ul>
+            <li>YouTube Kids (Approved Content)</li>
+            <li>Router time schedules</li>
+            <li>Physical device storage in a locked drawer at night</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="age-card age-8">
+        <div class="age-card-head">
+          Ages 8&ndash;11
+          <small>Monitored Access</small>
+        </div>
+        <div class="age-card-body">
+          <div class="age-section-title">Devices</div>
+          <ul>
+            <li>Shared or individual device with full parental controls enabled</li>
+            <li>Device charges outside the bedroom at night</li>
+            <li>Basic phone for calls/texts only &mdash; no smartphone with internet</li>
+          </ul>
+          <div class="age-section-title">Content</div>
+          <ul>
+            <li>YouTube with Supervised Experience or Restricted Mode via DNS</li>
+            <li>SafeSearch locked network-wide</li>
+            <li>No social media accounts (minimum age for most platforms is 13)</li>
+            <li>Approved game platforms only (Roblox with Account PIN and privacy locked)</li>
+            <li>/etc/hosts blocking of inappropriate domains</li>
+          </ul>
+          <div class="age-section-title">Time</div>
+          <ul>
+            <li>1&ndash;2 hours/day recreational screen time</li>
+            <li>Devices off at 8:30 PM &mdash; enforced by router or Screen Time</li>
+          </ul>
+          <div class="age-section-title">Tools to use</div>
+          <ul>
+            <li>Screen Time / Family Link (full restrictions)</li>
+            <li>DNS filtering (CleanBrowsing or NextDNS)</li>
+            <li>Router time schedules</li>
+            <li>YouTube Kids or Supervised Experience</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="age-card age-12">
+        <div class="age-card-head">
+          Ages 12&ndash;14
+          <small>Supervised Social Access</small>
+        </div>
+        <div class="age-card-body">
+          <div class="age-section-title">Devices</div>
+          <ul>
+            <li>Personal smartphone with parental controls active</li>
+            <li>Device charges in a common area or parent's room overnight &mdash; no exceptions</li>
+            <li>Parent knows all account usernames and passwords</li>
+          </ul>
+          <div class="age-section-title">Content</div>
+          <ul>
+            <li>One or two social platforms at most, with privacy settings configured by parent</li>
+            <li>All new app installs require parental approval</li>
+            <li>Bark or Qustodio monitoring active on all accounts</li>
+            <li>No anonymous platforms (Whisper, anonymous question apps)</li>
+            <li>No streaming services without a parent-controlled profile</li>
+          </ul>
+          <div class="age-section-title">Time</div>
+          <ul>
+            <li>2 hours/day recreational screen time (enforced by Screen Time / Family Link)</li>
+            <li>No devices after 9:30 PM; device leaves bedroom at bedtime</li>
+            <li>No devices during homework time or meals</li>
+          </ul>
+          <div class="age-section-title">Tools to use</div>
+          <ul>
+            <li>Bark (social media monitoring)</li>
+            <li>Screen Time / Family Link (app limits, downtime)</li>
+            <li>NextDNS device profile (works away from home)</li>
+            <li>Carrier family controls (mobile data)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="age-card age-15">
+        <div class="age-card-head">
+          Ages 15&ndash;17
+          <small>Graduated Autonomy</small>
+        </div>
+        <div class="age-card-body">
+          <div class="age-section-title">Devices</div>
+          <ul>
+            <li>Personal smartphone with lighter-touch monitoring</li>
+            <li>Device ideally still charged outside bedroom, though increasingly a negotiation</li>
+            <li>Transparency over surveillance: teen knows monitoring tools are in place</li>
+          </ul>
+          <div class="age-section-title">Content</div>
+          <ul>
+            <li>Social media allowed with ongoing conversations about risks</li>
+            <li>Bark still active &mdash; framed as a safety net, not surveillance</li>
+            <li>App approvals may be relaxed for 17-year-olds with demonstrated judgment</li>
+            <li>Adult content still filtered via DNS &mdash; explain why, not just "because I said so"</li>
+          </ul>
+          <div class="age-section-title">Time</div>
+          <ul>
+            <li>Negotiate screen time rather than enforce it top-down</li>
+            <li>Set clear expectations: no devices during sleep hours, grades must stay up</li>
+            <li>Weekly check-ins on what they are consuming and who they are talking to</li>
+          </ul>
+          <div class="age-section-title">Tools to use</div>
+          <ul>
+            <li>Bark (alert-only, not full monitoring)</li>
+            <li>DNS filtering still active (adult content)</li>
+            <li>Open conversations as the primary safety tool</li>
+            <li>Clear, agreed-upon household rules written down</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /age-grid -->
+  </div>
+</section>
+
+<!-- WARNING SIGNS -->
+<section id="warnings">
+  <div class="container">
+    <div class="section-heading-wrap">
+      <div class="section-number">Section 5</div>
+      <h2>Warning Signs: When Something Is Wrong</h2>
+    </div>
+
+    <div class="warning-intro">
+      <strong>Know what you are looking for</strong>
+      Technology controls catch a significant fraction of problems, but not all of them. Children who are being groomed, cyberbullied, radicalized, or are struggling with addiction or self-harm will often show behavioral changes before the content is ever detected. These warning signs are not proof of a problem &mdash; they are reasons to open a conversation.
+    </div>
+
+    <div class="warning-grid">
+
+      <div class="warning-card">
+        <div class="warning-flag">Behavioral</div>
+        <div class="warning-title">Hiding the Screen When You Walk By</div>
+        <p class="warning-detail">A child who flips their phone face-down, switches apps, or minimizes the browser whenever a parent enters the room is not simply seeking privacy &mdash; they are concealing specific content. Occasional privacy is normal; reflexive concealment is a signal.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Emotional</div>
+        <div class="warning-title">Extreme Distress When Devices Are Removed</div>
+        <p class="warning-detail">Some frustration when a device is taken away is normal. Disproportionate anger, crying, panic, or threats at the prospect of losing device access can indicate psychological dependence or that an ongoing online relationship is being severed. Screen addiction is clinically recognized and treatable.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Social</div>
+        <div class="warning-title">Withdrawal from Family and Long-Time Friends</div>
+        <p class="warning-detail">A child pulling away from in-person relationships to spend more time online, or whose online friendships have become their primary social context, may be developing an unhealthy relationship with the internet or may have found an online community (not always benign) that meets needs their real-world relationships do not.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Safety</div>
+        <div class="warning-title">Receiving Gifts, Money, or Game Credits from Unknown Sources</div>
+        <p class="warning-detail">Adult predators commonly use gift-giving as part of the grooming process: Amazon gift cards, Steam gift cards, Robux, PayPal transfers. If your child has received anything of value from an online contact that you did not authorize, treat this as a serious red flag and ask direct questions about who gave it to them.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Behavioral</div>
+        <div class="warning-title">Switching Apps or Closing Browser Abruptly When Asked</div>
+        <p class="warning-detail">If your child cannot calmly show you what they were looking at when you ask, or produces an immediate excuse for why the screen was blank, that is information. Children with nothing to hide typically do not react defensively to a parent glancing at their screen.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Physical</div>
+        <div class="warning-title">Disturbed Sleep or Being Awake Late Using Devices</div>
+        <p class="warning-detail">Social media is engineered to be used at night &mdash; notification cycles, live stories, and DM conversations all peak after 10 PM. A child who is chronically tired, irritable in the morning, or whose light you can see under the door at midnight is likely using a device that should be charged in a common area.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Developmental</div>
+        <div class="warning-title">Sexual Knowledge or Language Beyond Their Age</div>
+        <p class="warning-detail">Children who are using language, referencing concepts, or demonstrating knowledge about sex that is beyond what would be expected for their age have likely been exposed to pornography or sexual content. This warrants a calm, direct conversation &mdash; not punishment &mdash; to understand what they have seen and help them process it.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Social</div>
+        <div class="warning-title">Secretive About Online Friends or Refusing to Describe Them</div>
+        <p class="warning-detail">It is normal for children to have online gaming friends. It is not normal for them to refuse to describe who those friends are, become defensive or hostile when asked, or insist that a parent would "never understand." Adults who build relationships with children online typically encourage secrecy as a protective strategy.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Technical</div>
+        <div class="warning-title">Multiple Accounts or Unknown Apps on the Device</div>
+        <p class="warning-detail">If you find apps on your child's device you did not approve, or if you discover secondary accounts on platforms you knew they used, do not immediately confiscate the device &mdash; instead ask curious questions to understand why they created them. Secondary accounts are often created to avoid detection of content that would violate household rules.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Emotional</div>
+        <div class="warning-title">Mood Closely Tied to Social Media Metrics</div>
+        <p class="warning-detail">A child who checks their post's likes repeatedly, becomes visibly upset when a post receives little engagement, or whose emotional state tracks the performance of their social media content is experiencing the reward-feedback loop that social platforms are deliberately designed to create. This is a sign the relationship with the platform is becoming problematic.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Safety</div>
+        <div class="warning-title">Mentioning Meeting an Online Friend in Person</div>
+        <p class="warning-detail">Online grooming typically progresses toward an in-person meeting. If your child mentions wanting to meet, or has made plans to meet, someone they know primarily from online &mdash; even if the contact appears to be a peer &mdash; this warrants immediate parental involvement. Predators often pose as age-matched peers for extended periods before revealing intent.</p>
+      </div>
+
+      <div class="warning-card">
+        <div class="warning-flag">Mental Health</div>
+        <div class="warning-title">References to Self-Harm, Death, or "Not Being Here"</div>
+        <p class="warning-detail">Online communities can normalize self-harm and suicidal ideation in vulnerable teenagers. If your child makes references to self-harm, suicide, or "the world being better without them" &mdash; even in what appears to be a casual or joking way &mdash; take it seriously. Contact a mental health professional. The Bark monitoring tool is specifically configured to detect this language in messages and alert parents.</p>
+      </div>
+
+    </div><!-- /warning-grid -->
   </div>
 </section>
 
