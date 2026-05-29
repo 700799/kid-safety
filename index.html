@@ -914,8 +914,329 @@ footer {
 }
 
 /* ============================================================
-   SECTION HEADING ICON
+   TOOL COMPARISON TABLE
    ============================================================ */
+#comparison { background: #FFF5D6; }
+
+.table-wrap {
+  overflow-x: auto;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+}
+
+.compare-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 860px;
+  background: var(--card-bg);
+  font-family: var(--font-ui);
+  font-size: 0.83rem;
+}
+
+.compare-table thead tr {
+  background: var(--near-black);
+  color: white;
+}
+
+.compare-table th {
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  font-family: var(--font-head);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+
+.compare-table th:last-child { border-right: 0; }
+
+.compare-table td {
+  padding: 0.6rem 0.9rem;
+  border-bottom: 2px solid #EEE;
+  border-right: 1px solid #DDD;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+
+.compare-table td:last-child { border-right: 0; }
+
+.compare-table tbody tr:last-child td { border-bottom: 0; }
+
+.compare-table tbody tr:hover { background: #FFFDE7; }
+
+/* Row category bands */
+.row-hw   td:first-child { border-left: 4px solid var(--orange); }
+.row-dns  td:first-child { border-left: 4px solid var(--blue); }
+.row-os   td:first-child { border-left: 4px solid var(--green); }
+.row-app  td:first-child { border-left: 4px solid #8E24AA; }
+.row-ext  td:first-child { border-left: 4px solid #5D4037; }
+.row-mon  td:first-child { border-left: 4px solid var(--red-warn); }
+
+.tool-name {
+  font-family: var(--font-head);
+  font-size: 0.83rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.12rem 0.4rem;
+  border: 1.5px solid currentColor;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+.badge-yes    { color: var(--green); }
+.badge-no     { color: #999; }
+.badge-part   { color: var(--orange); }
+.badge-free   { color: var(--green); }
+.badge-paid   { color: var(--red-warn); }
+.badge-easy   { background: #E8F5E9; color: var(--green); border-color: var(--green); }
+.badge-medium { background: #FFF3E0; color: var(--orange); border-color: var(--orange); }
+.badge-hard   { background: #FFEBEE; color: var(--red-warn); border-color: var(--red-warn); }
+
+.table-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legend-swatch {
+  width: 1rem;
+  height: 0.75rem;
+  border: 1.5px solid var(--near-black);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   GLOSSARY
+   ============================================================ */
+#glossary { background: var(--page-bg); }
+
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 860px) { .glossary-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .glossary-grid { grid-template-columns: 1fr; } }
+
+.gloss-card {
+  background: var(--card-bg);
+  border: var(--border);
+  box-shadow: 3px 3px 0 var(--near-black);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.gloss-term {
+  font-family: var(--font-head);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--near-black);
+  line-height: 1.2;
+}
+
+.gloss-cat {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.08rem 0.38rem;
+  border: 1.5px solid var(--near-black);
+  color: white;
+  background: var(--blue);
+  line-height: 1.3;
+}
+
+.gloss-cat.tc-network  { background: var(--blue); }
+.gloss-cat.tc-platform { background: #8E24AA; }
+.gloss-cat.tc-safety   { background: var(--red-warn); }
+.gloss-cat.tc-tool     { background: var(--green); }
+.gloss-cat.tc-device   { background: var(--orange); color: var(--near-black); }
+
+.gloss-def {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+/* ============================================================
+   PRINT BUTTON
+   ============================================================ */
+.print-btn-wrap {
+  margin-top: 2rem;
+}
+
+.btn-print {
+  font-family: var(--font-head);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--near-black);
+  color: var(--yellow);
+  border: 2px solid var(--near-black);
+  box-shadow: var(--shadow);
+  padding: 0.65rem 1.4rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-print:hover { background: var(--dark-blue); }
+.btn-print svg { width: 1.1rem; height: 1.1rem; }
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+#print-summary { display: none; }
+
+@media print {
+  nav, #hero, #defense, #measures, #numbers,
+  #research, #platforms, #ages, #warnings, #quickstart,
+  #comparison, #glossary, footer,
+  .print-btn-wrap { display: none !important; }
+
+  #intro, #print-summary { display: block !important; }
+  #intro { display: none !important; }
+  #print-summary { display: block !important; }
+
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: white; font-size: 9pt; margin: 0; padding: 0; }
+
+  .print-header {
+    background: #FED90F !important;
+    border-bottom: 3px solid black;
+    padding: 0.3in 0.4in 0.2in;
+    page-break-after: avoid;
+  }
+
+  .print-header h1 {
+    font-family: Impact, sans-serif;
+    font-size: 18pt;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    margin: 0 0 2pt;
+  }
+
+  .print-header p {
+    font-family: Arial, sans-serif;
+    font-size: 8pt;
+    margin: 0;
+    color: #333;
+  }
+
+  .print-body {
+    padding: 0.2in 0.4in;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.3in;
+  }
+
+  .print-col-full {
+    grid-column: 1 / -1;
+  }
+
+  .print-section-title {
+    font-family: Impact, sans-serif;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 2pt solid black;
+    margin: 0.1in 0 4pt;
+    padding-bottom: 2pt;
+  }
+
+  .print-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.1in;
+  }
+
+  .print-list li {
+    font-family: Arial, sans-serif;
+    font-size: 7.5pt;
+    padding: 2pt 0 2pt 12pt;
+    border-bottom: 0.5pt solid #CCC;
+    position: relative;
+    line-height: 1.35;
+  }
+
+  .print-list li::before {
+    content: "";
+    position: absolute;
+    left: 2pt;
+    top: 7pt;
+    width: 7pt;
+    height: 7pt;
+    border: 1.5pt solid #1A1A1A;
+    border-radius: 2pt;
+  }
+
+  .print-list li strong {
+    display: block;
+    font-size: 7pt;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .print-dns-box {
+    background: #009DDC !important;
+    color: white !important;
+    padding: 4pt 8pt;
+    font-family: Courier New, monospace;
+    font-size: 7.5pt;
+    margin-bottom: 0.1in;
+    border: 1.5pt solid black;
+  }
+
+  .print-footer-note {
+    grid-column: 1 / -1;
+    font-family: Arial, sans-serif;
+    font-size: 6.5pt;
+    color: #666;
+    border-top: 0.5pt solid #CCC;
+    padding-top: 4pt;
+    margin-top: 4pt;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE (keep last)
+   ============================================================ */
+@media (max-width: 480px) {
+  .card-header { gap: 0.65rem; padding: 0.75rem 1rem; }
+  .card-body   { padding: 1.1rem; }
+  pre          { font-size: 0.78rem; }
+}
+
 .heading-with-icon {
   display: flex;
   align-items: center;
@@ -1302,6 +1623,8 @@ footer {
     <a href="#ages">By Age</a>
     <a href="#warnings">Warning Signs</a>
     <a href="#quickstart">Start Here</a>
+    <a href="#comparison">Compare Tools</a>
+    <a href="#glossary">Glossary</a>
   </div>
 </nav>
 
@@ -3178,8 +3501,421 @@ m.youtube.com   → restrict.youtube.com
         </div>
       </li>
     </ul>
+
+    <div class="print-btn-wrap">
+      <button class="btn-print" onclick="window.print()" aria-label="Print a one-page reference card">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="6" y="2" width="12" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.7"/>
+          <rect x="3" y="8" width="18" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+          <rect x="7" y="14" width="10" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.7"/>
+          <circle cx="18.5" cy="12.5" r="1" fill="currentColor"/>
+        </svg>
+        Print One-Page Reference Card
+      </button>
+    </div>
   </div>
 </section>
+
+<!-- TOOL COMPARISON TABLE -->
+<section id="comparison">
+  <div class="container">
+    <div class="section-heading-wrap">
+      <div class="section-number">Reference</div>
+      <div class="heading-with-icon">
+        <span class="heading-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="18" height="16" rx="2" fill="#fff" stroke="#1A1A1A" stroke-width="1.6"/>
+            <line x1="3" y1="9" x2="21" y2="9" stroke="#1A1A1A" stroke-width="1.4"/>
+            <line x1="9" y1="9" x2="9" y2="20" stroke="#1A1A1A" stroke-width="1.2"/>
+            <line x1="15" y1="9" x2="15" y2="20" stroke="#1A1A1A" stroke-width="1.2"/>
+          </svg>
+        </span>
+        <h2>Tool Comparison: Every Option at a Glance</h2>
+      </div>
+      <p class="section-intro">Use this table to decide which tools to deploy first. "Away from Home" means the control still works on mobile data and other WiFi networks.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="compare-table" role="table" aria-label="Parental control tool comparison">
+        <thead>
+          <tr>
+            <th scope="col">Tool</th>
+            <th scope="col">Category</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Covers All<br>Home Devices</th>
+            <th scope="col">Works Away<br>from Home</th>
+            <th scope="col">Monitors<br>Message Content</th>
+            <th scope="col">Setup<br>Difficulty</th>
+            <th scope="col">Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-hw">
+            <td><div class="tool-name">Firewalla</div></td>
+            <td>Hardware firewall</td>
+            <td>$109&ndash;329 one-time</td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-medium">Medium</span></td>
+            <td>Whole-home visibility; consoles &amp; smart TVs</td>
+          </tr>
+          <tr class="row-dns">
+            <td><div class="tool-name">OpenDNS FamilyShield</div></td>
+            <td>DNS filter</td>
+            <td><span class="badge badge-free">Free</span></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-easy">Easy</span></td>
+            <td>Instant adult content blocking, no account needed</td>
+          </tr>
+          <tr class="row-dns">
+            <td><div class="tool-name">CleanBrowsing Family</div></td>
+            <td>DNS filter</td>
+            <td><span class="badge badge-free">Free</span></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-easy">Easy</span></td>
+            <td>Drop-in adult &amp; mixed-content blocker, router-only</td>
+          </tr>
+          <tr class="row-dns">
+            <td><div class="tool-name">NextDNS</div></td>
+            <td>DNS filter + device VPN</td>
+            <td>Free / ~$2/mo</td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-yes">Yes</span> <small>(with device profile)</small></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-medium">Medium</span></td>
+            <td>Most powerful free DNS; extends to mobile data via profile</td>
+          </tr>
+          <tr class="row-dns">
+            <td><div class="tool-name">/etc/hosts blocking</div></td>
+            <td>OS-level DNS override</td>
+            <td><span class="badge badge-free">Free</span></td>
+            <td><span class="badge badge-no">No</span> <small>(per device)</small></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-medium">Medium</span></td>
+            <td>Free offline fallback layer on managed computers</td>
+          </tr>
+          <tr class="row-os">
+            <td><div class="tool-name">Apple Screen Time</div></td>
+            <td>OS parental control</td>
+            <td><span class="badge badge-free">Free</span></td>
+            <td><span class="badge badge-no">No</span> <small>(iOS/macOS only)</small></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-easy">Easy</span></td>
+            <td>App limits, content ratings, downtime on Apple devices</td>
+          </tr>
+          <tr class="row-os">
+            <td><div class="tool-name">Google Family Link</div></td>
+            <td>OS parental control</td>
+            <td><span class="badge badge-free">Free</span></td>
+            <td><span class="badge badge-no">No</span> <small>(Android only)</small></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-easy">Easy</span></td>
+            <td>App approval, bedtime lock, location on Android</td>
+          </tr>
+          <tr class="row-app">
+            <td><div class="tool-name">Net Nanny</div></td>
+            <td>Parental control app</td>
+            <td>~$55/yr (5 devices)</td>
+            <td><span class="badge badge-part">Partial</span></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-part">Page content</span></td>
+            <td><span class="badge badge-medium">Medium</span></td>
+            <td>HTTPS inspection, category filtering, instant alerts</td>
+          </tr>
+          <tr class="row-app">
+            <td><div class="tool-name">Circle Go</div></td>
+            <td>Family VPN proxy</td>
+            <td>$99 device + $9.99/mo</td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-medium">Medium</span></td>
+            <td>Same home rules applied on mobile data via device profile</td>
+          </tr>
+          <tr class="row-ext">
+            <td><div class="tool-name">uBlock Origin</div></td>
+            <td>Browser extension</td>
+            <td><span class="badge badge-free">Free</span></td>
+            <td><span class="badge badge-no">No</span> <small>(per browser)</small></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-easy">Easy</span></td>
+            <td>Ad, tracker, and adult filter lists inside the browser</td>
+          </tr>
+          <tr class="row-ext">
+            <td><div class="tool-name">BlockSite</div></td>
+            <td>Browser extension</td>
+            <td>Free / paid tier</td>
+            <td><span class="badge badge-no">No</span> <small>(per browser)</small></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-easy">Easy</span></td>
+            <td>Scheduled browser blocking and per-site bans</td>
+          </tr>
+          <tr class="row-mon">
+            <td><div class="tool-name">Bark</div></td>
+            <td>Social media monitor</td>
+            <td>$14/mo (up to 5 kids)</td>
+            <td><span class="badge badge-no">No</span></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-easy">Easy</span></td>
+            <td>AI alerts for grooming, self-harm, bullying in messages</td>
+          </tr>
+          <tr class="row-mon">
+            <td><div class="tool-name">Qustodio</div></td>
+            <td>Parental control + monitor</td>
+            <td>$55&ndash;100/yr</td>
+            <td><span class="badge badge-part">Partial</span></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-yes">Yes</span></td>
+            <td><span class="badge badge-medium">Medium</span></td>
+            <td>Combined filtering + social monitoring + location + Panic Button</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#E8F5E9;border-color:var(--green);"></div> Easy setup</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#FFF3E0;border-color:var(--orange);"></div> Medium setup</div>
+      <div class="legend-item"><div class="legend-swatch" style="border-left:4px solid var(--orange);"></div> Hardware</div>
+      <div class="legend-item"><div class="legend-swatch" style="border-left:4px solid var(--blue);"></div> DNS / Network</div>
+      <div class="legend-item"><div class="legend-swatch" style="border-left:4px solid var(--green);"></div> OS controls</div>
+      <div class="legend-item"><div class="legend-swatch" style="border-left:4px solid #8E24AA;"></div> Parental apps</div>
+      <div class="legend-item"><div class="legend-swatch" style="border-left:4px solid #5D4037;"></div> Browser extensions</div>
+      <div class="legend-item"><div class="legend-swatch" style="border-left:4px solid var(--red-warn);"></div> Monitoring</div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOSSARY -->
+<section id="glossary">
+  <div class="container">
+    <div class="section-heading-wrap">
+      <div class="section-number">Glossary</div>
+      <div class="heading-with-icon">
+        <span class="heading-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="3" width="13" height="18" rx="1.5" fill="#fff" stroke="#1A1A1A" stroke-width="1.6"/>
+            <rect x="9" y="3" width="11" height="18" rx="1.5" fill="#FED90F" stroke="#1A1A1A" stroke-width="1.6"/>
+            <line x1="11.5" y1="8" x2="17.5" y2="8" stroke="#1A1A1A" stroke-width="1.3" stroke-linecap="round"/>
+            <line x1="11.5" y1="11.5" x2="17.5" y2="11.5" stroke="#1A1A1A" stroke-width="1.3" stroke-linecap="round"/>
+            <line x1="11.5" y1="15" x2="16" y2="15" stroke="#1A1A1A" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h2>Glossary: Terms Parents Need to Know</h2>
+      </div>
+      <p class="section-intro">Plain-language definitions for every technical term used in this guide and in conversations about child online safety.</p>
+    </div>
+
+    <div class="glossary-grid">
+
+      <div class="gloss-card">
+        <div class="gloss-term">Algorithm</div>
+        <span class="gloss-cat tc-platform">Platform</span>
+        <p class="gloss-def">A set of rules a platform uses to decide what content to show each user. Social media algorithms prioritize content that keeps users watching longest, not content that is healthiest. They learn from every tap, pause, and scroll your child makes, and they get increasingly good at surfacing content that provokes strong emotional reactions.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">CNAME Record</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">A DNS configuration entry that redirects one domain name to another. Used in this guide to redirect google.com to forcesafesearch.google.com so Google always returns SafeSearch results. Set in your router, Pi-hole, or NextDNS dashboard; takes effect for all devices on the network instantly.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">CSAM</div>
+        <span class="gloss-cat tc-safety">Safety</span>
+        <p class="gloss-def">Child Sexual Abuse Material. Images or videos depicting the sexual abuse of minors. It is illegal to possess, distribute, or view in all jurisdictions. Its presence on major platforms like Instagram and Discord has been documented by researchers and is a primary reason why unmonitored platform access for children carries serious risk beyond "bad language."</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">DNS</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">Domain Name System &mdash; the internet's phone book. When your child's device types "youtube.com," it asks a DNS server for the numerical IP address that corresponds to that name. DNS filtering works by answering those requests with "no address found" for blocked domains, so the connection never starts. Every internet connection begins with a DNS lookup.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">DNS over HTTPS (DoH)</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">An encrypted version of DNS that runs through port 443 (the same port as normal web traffic), making it invisible to most router-level filters. Firefox and Chrome support DoH built-in. A child can enable it in browser settings to bypass traditional DNS filtering. Counter with NextDNS's own DoH endpoint or by blocking DoH providers at the firewall.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">Family Pairing</div>
+        <span class="gloss-cat tc-platform">Platform</span>
+        <p class="gloss-def">TikTok's built-in parental control system. Links a parent's TikTok account to a child's account by QR code scan. Gives the parent remote control over screen time limits, direct message settings, content restrictions, and search access from their own phone. Requires both parent and child to have TikTok accounts and for the child to accept the connection.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">Filter List</div>
+        <span class="gloss-cat tc-tool">Tool</span>
+        <p class="gloss-def">A text file containing tens or hundreds of thousands of domain names or URL patterns that should be blocked. Used by DNS filters (NextDNS, Pi-hole) and browser extensions (uBlock Origin). Community-maintained lists like HaGeZi Multi-Pro and OISD are updated daily. A single filter list can block more domains than any parent could manually curate.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">Finsta</div>
+        <span class="gloss-cat tc-platform">Platform</span>
+        <p class="gloss-def">A "fake Instagram" &mdash; a secondary Instagram account a teenager uses for content they do not want their primary followers (including parents) to see. Common among teens aged 13&ndash;17. The account is set to private with a small list of trusted friends. Bark detects secondary account activity on devices it monitors. Combine with App Store purchase approval to prevent new account creation going unnoticed.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">Firewall</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">A device or software that monitors and controls incoming and outgoing network traffic based on security rules. A hardware firewall like Firewalla sits physically between your modem and router and inspects every packet passing through. A software firewall (like Windows Defender Firewall) runs on a single device. Hardware firewalls cannot be bypassed by deleting an app.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">Grooming</div>
+        <span class="gloss-cat tc-safety">Safety</span>
+        <p class="gloss-def">The process by which an adult builds trust and emotional intimacy with a child in order to facilitate sexual abuse, exploitation, or trafficking. It typically involves establishing a relationship, gradually introducing sexual topics, encouraging secrecy, and eventually moving toward in-person contact. Online grooming most commonly starts on gaming platforms, social media DMs, and Discord. Bark's AI is specifically trained to detect grooming language patterns in messages.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">HTTPS</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">HyperText Transfer Protocol Secure. The encrypted version of web browsing. The padlock icon in your browser means the connection is HTTPS. While HTTPS protects your data in transit (good), it also means basic network filters cannot read the content of web pages &mdash; only the domain name. This is why application-layer tools like Net Nanny (which install a local certificate to inspect HTTPS traffic) are more powerful than DNS-only filters.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">IP Address</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">The numerical address of a device or website on the internet (e.g., 104.18.22.68). DNS translates domain names into IP addresses. Blocking a domain name via DNS does not block access via its IP address directly. This is one way children bypass hosts-file blocking: they look up a site's IP and connect directly, skipping DNS entirely. Network-level firewall rules can block specific IP ranges to close this gap.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">ISP</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">Internet Service Provider &mdash; the company providing your home internet connection (Comcast, AT&amp;T, Verizon, etc.). By default your router uses your ISP's DNS servers, which have no parental filtering. The first thing this guide recommends is replacing the ISP's default DNS with a filtering DNS like CleanBrowsing or NextDNS.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">MAC Address</div>
+        <span class="gloss-cat tc-device">Device</span>
+        <p class="gloss-def">A unique hardware identifier burned into every network card at manufacture (e.g., AA:BB:CC:DD:EE:FF). Routers use MAC addresses to identify and distinguish individual devices. Parental controls that restrict "Mia's iPhone" do so by tracking the MAC address of that device. Children can sometimes "spoof" (fake) a different MAC address in software to appear as an unrestricted device.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">MDM Profile</div>
+        <span class="gloss-cat tc-device">Device</span>
+        <p class="gloss-def">Mobile Device Management Profile. A configuration file installed on iOS or Android that gives a parent or organization control over device settings at the OS level. Used by Net Nanny, NextDNS, and Circle to push restrictions that cannot be deleted without a password. Apple Configurator 2 (free Mac app) allows parents to "supervise" an iPhone, making MDM profiles non-removable.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">Port</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">A numbered channel on a network connection used to direct traffic to specific services. Port 80 is standard web traffic; port 443 is HTTPS; port 1194 is OpenVPN; port 51820 is WireGuard. Firewalls can block specific ports &mdash; blocking port 1194 and 51820 prevents most VPN apps from connecting, which is one way to stop children from tunneling around network filters.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">Restricted Mode</div>
+        <span class="gloss-cat tc-platform">Platform</span>
+        <p class="gloss-def">YouTube's content filter. When enabled, it hides videos that have been flagged by users, algorithms, or age-restricted by creators. It is not comprehensive &mdash; many inappropriate videos are never flagged &mdash; but it removes the most obvious explicit content. Locked at the DNS level using CNAME records (pointing youtube.com to restrict.youtube.com), it applies to every device on the network without needing to set it in each account.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">Router</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">The device that connects your home to the internet and distributes that connection to all your home devices via WiFi and ethernet. All internet traffic from every device in your home passes through the router, making it the most powerful single point for applying parental controls. Changing the DNS settings in your router applies content filtering to every device simultaneously.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">SafeSearch</div>
+        <span class="gloss-cat tc-platform">Platform</span>
+        <p class="gloss-def">A filtering setting offered by Google, Bing, and DuckDuckGo that removes explicit sexual content from search results and Google Images. It is off by default on standard accounts. "Locking" SafeSearch (via the parent Google account or via DNS CNAME override) prevents the child from turning it off. It does not block all inappropriate content but eliminates the most obvious search-result pathways to adult material.</p>
+      </div>
+
+      <div class="gloss-card">
+        <div class="gloss-term">VPN</div>
+        <span class="gloss-cat tc-network">Network</span>
+        <p class="gloss-def">Virtual Private Network. A technology that encrypts all internet traffic from a device and routes it through a server in a different location. Adults use VPNs for privacy and security. Children use consumer VPN apps (Windscribe, ProtonVPN, 1.1.1.1 WARP) specifically to bypass parental DNS filters and network controls. A family-managed VPN like NextDNS or Circle works differently: it routes traffic through a parent-controlled proxy, so the filtering happens at the VPN server rather than being bypassed by it.</p>
+      </div>
+
+    </div><!-- /glossary-grid -->
+  </div>
+</section>
+
+<!-- PRINT SUMMARY (screen-hidden; visible only when printing) -->
+<div id="print-summary" aria-hidden="true">
+  <div class="print-header">
+    <h1>Keep Your Kids Safe Online &mdash; Parent Reference Card</h1>
+    <p>Full guide: https://700799.github.io/kid-safety/ &nbsp;&bull;&nbsp; Print this and keep it by your router.</p>
+  </div>
+  <div class="print-body">
+
+    <div>
+      <div class="print-section-title">10 Things to Lock Down</div>
+      <ol class="print-list">
+        <li><strong>Firewalla</strong> Hardware firewall between modem and router. Blocks categories per device, enforces bedtime.</li>
+        <li><strong>/etc/hosts</strong> Free OS-level domain blocking. Lock the file under a separate admin account.</li>
+        <li><strong>DNS Filtering</strong> CleanBrowsing: 185.228.168.168 / NextDNS for device profiles.</li>
+        <li><strong>Net Nanny</strong> Application-layer HTTPS inspection. Blocks categories on WiFi and mobile data.</li>
+        <li><strong>Router controls</strong> MAC-address schedules. Block unknown MACs by default.</li>
+        <li><strong>Screen Time / Family Link</strong> Native OS controls that travel with the device. Set a unique passcode.</li>
+        <li><strong>Family VPN</strong> NextDNS profile or Circle Go. Extends filtering to mobile data.</li>
+        <li><strong>SafeSearch</strong> CNAME: youtube.com &rarr; restrict.youtube.com, google.com &rarr; forcesafesearch.google.com</li>
+        <li><strong>Browser extensions</strong> uBlock Origin + BlockSite. Lock via Group Policy or managed profile.</li>
+        <li><strong>Bark / Qustodio</strong> AI monitoring of DMs. Alerts on grooming, self-harm, bullying.</li>
+      </ol>
+    </div>
+
+    <div>
+      <div class="print-section-title">12 Warning Signs</div>
+      <ul class="print-list">
+        <li>Hides the screen when a parent walks by</li>
+        <li>Extreme anger when device is taken away</li>
+        <li>Withdrawal from family and long-time friends</li>
+        <li>Receives gifts, money, or game credits from unknown online contacts</li>
+        <li>Switches apps or closes browser suddenly when asked</li>
+        <li>Disturbed sleep; awake late using device</li>
+        <li>Sexual knowledge or language beyond their age</li>
+        <li>Secretive about online friends; defensive when asked</li>
+        <li>Multiple accounts or unapproved apps on the device</li>
+        <li>Mood closely tied to social media likes or follower count</li>
+        <li>Mentions wanting to meet an online contact in person</li>
+        <li>References to self-harm or "not being here" (even joking)</li>
+      </ul>
+    </div>
+
+    <div class="print-col-full">
+      <div class="print-section-title">DNS Numbers to Write Down</div>
+      <div class="print-dns-box">
+        CleanBrowsing Family:  185.228.168.168 / 185.228.169.168
+        OpenDNS FamilyShield:  208.67.222.123  / 208.67.220.123
+        Google SafeSearch IP:  216.239.38.120  (forcesafesearch.google.com)
+        YouTube Restricted:    CNAME youtube.com → restrict.youtube.com
+      </div>
+    </div>
+
+    <div class="print-col-full">
+      <div class="print-section-title">Quick-Start Priority Order</div>
+      <ul class="print-list" style="columns:2; column-gap:0.3in;">
+        <li><strong>Step 1</strong> Change router admin password now</li>
+        <li><strong>Step 2</strong> Set router DNS to CleanBrowsing</li>
+        <li><strong>Step 3</strong> Enable Screen Time or Family Link</li>
+        <li><strong>Step 4</strong> Block app installs without your approval</li>
+        <li><strong>Step 5</strong> Enforce SafeSearch via DNS CNAME</li>
+        <li><strong>Step 6</strong> Install NextDNS profile on child devices</li>
+        <li><strong>Step 7</strong> Set carrier mobile-data family controls</li>
+        <li><strong>Step 8</strong> Subscribe to Bark for message monitoring</li>
+        <li><strong>Step 9</strong> Consider Firewalla for consoles &amp; smart TVs</li>
+        <li><strong>Step 10</strong> Have the conversation. Explain the why.</li>
+      </ul>
+    </div>
+
+    <div class="print-footer-note">
+      Disclaimer: Product features and DNS addresses change. Verify with vendor documentation. Monitoring is supervision, not punishment &mdash; no tool replaces ongoing conversation. Full guide with setup instructions: https://700799.github.io/kid-safety/
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
